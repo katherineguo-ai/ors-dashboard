@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>2026 H1 ORS-FD&RR 营销表现回顾</title>
+<style>
+  :root { --orange:#F4743B; --orange-light:#FFF2EA; --text:#1a1f36; --muted:#6b7280; --bg:#f5f6fa; --white:#fff; --border:#e5e7eb; --radius:12px; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .app{max-width:1280px;margin:0 auto;padding:32px 24px 64px}
+
+  /* ── Hero ── */
+  .hero{text-align:center;padding:48px 24px 40px}
+  .hero .badge{display:inline-block;padding:4px 14px;border-radius:99px;background:var(--orange-light);color:var(--orange);font-size:13px;font-weight:600;letter-spacing:.04em;margin-bottom:16px}
+  .hero h1{font-size:clamp(24px,3vw,34px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+  .hero .sub{color:var(--muted);max-width:680px;margin:0 auto;font-size:15px}
+
+  /* ── Section ── */
+  .section{margin-top:32px}
+  .section-title{font-size:20px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .section-title .num{display:inline-flex;width:28px;height:28px;border-radius:8px;background:var(--orange-light);color:var(--orange);font-size:14px;font-weight:700;align-items:center;justify-content:center;flex-shrink:0}
+  .section-desc{color:var(--muted);font-size:14px;margin-bottom:16px}
+
+  /* ── Card ── */
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px}
+  .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+  .card-header h3{font-size:16px;font-weight:600}
+
+  /* ── KPI strip ── */
+  .kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .kpi-item{text-align:center;padding:16px 10px;border-radius:var(--radius);background:var(--white);border:1px solid var(--border);cursor:pointer;transition:all .15s}
+  .kpi-item:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-1px)}
+  .kpi-item.active{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange) inset}
+  .kpi-item .mo{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .kpi-item .big{font-size:24px;font-weight:700}
+  .kpi-item .sub{font-size:12px;color:var(--muted);margin-top:4px}
+
+  /* ── Table ── */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:var(--radius)}
+  table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}
+  th,td{padding:10px 14px;text-align:center}
+  th{background:#f9fafb;color:var(--muted);font-weight:600;font-size:12px;border-bottom:2px solid var(--border)}
+  td{border-bottom:1px solid var(--border);color:var(--text)}
+  tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#fefaf7}
+  .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  .up{color:#059669;font-weight:600}
+  .down{color:#dc2626;font-weight:600}
+  .hi{color:var(--orange);font-weight:700}
+
+  /* ── Insight ── */
+  .insight-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .insight{padding:16px;border-radius:var(--radius);background:#fafbfc;border:1px solid var(--border);font-size:14px;line-height:1.75}
+  .insight b{color:var(--text)}
+  .insight .tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;margin-right:4px}
+  .tag-fd{background:var(--orange-light);color:var(--orange)}
+  .tag-rr{background:#e8f0fe;color:#3b82f6}
+  .tag-bonus{background:#dcfce7;color:#059669}
+
+  /* ── Timeline ── */
+  .timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+  .t-step{padding:12px;border-radius:var(--radius);background:var(--white);border:1px solid var(--border);font-size:12px;line-height:1.6}
+  .t-step .t-mo{font-weight:700;font-size:14px;margin-bottom:4px}
+  .t-step .t-disc{display:inline-block;padding:1px 8px;border-radius:4px;background:var(--orange-light);color:var(--orange);font-size:11px;font-weight:600;margin-bottom:6px}
+  .t-step .t-desc{color:var(--muted)}
+
+  /* ── Quote ── */
+  .quote{background:linear-gradient(135deg,var(--orange-light) 0%,#fff 80%);border:1px solid #fcd5c0;border-radius:var(--radius);padding:18px 20px;font-size:15px;line-height:1.8;margin-top:16px}
+
+  /* ── Chart ── */
+  .charts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .ch-wrap{position:relative;height:280px}
+  .ch-wrap canvas{width:100%!important}
+
+  /* ── Curve ── */
+  .curve-grid{display:grid;grid-template-columns:280px 1fr;gap:20px}
+  .curve-ctrl{display:grid;gap:12px}
+  .field{display:grid;gap:4px}
+  .field label{font-size:13px;color:var(--muted)}
+  .field select,.field input{padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;color:var(--text);background:var(--white)}
+  .btn{padding:10px 16px;border:none;border-radius:8px;background:var(--orange);color:#fff;font-weight:600;font-size:14px;cursor:pointer;text-align:center}
+  .btn:hover{opacity:.9}
+  .btn.m10btn{background:#e5e7eb;color:var(--text)}
+  .btn.m10btn.active{background:var(--orange);color:#fff}
+  .result-box{padding:14px;border-radius:var(--radius);background:#fafbfc;border:1px dashed #fcd5c0;font-size:13px;line-height:1.8}
+
+  /* ── Responsive ── */
+  @media (max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr)}.charts,.insight-row{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(3,1fr)}.curve-grid{grid-template-columns:1fr}}
+  @media (max-width:640px){.kpi-strip,.timeline{grid-template-columns:repeat(2,1fr)}.app{padding:16px 10px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ════ Hero ════ -->
+  <header class="hero">
+    <div class="badge">ORS-FD & RR · 2026 H1+Jul</div>
+    <h1>营销转化与方法论看板</h1>
+    <p class="sub">以提升 <strong>adoption rate</strong> 为核心目标，覆盖 2026 年 1–7 月共 7 次折扣费率营销活动。数据来自 [CNCB] Q1/Q2/Q3 Promotion Outcome Tracker，未经任何编造或推断。</p>
+  </header>
+
+  <!-- ════ 1. 大盘 ════ -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span>大盘数据——月度关键指标一览</div>
+    <p class="section-desc">点击月份查看详细数据。adoption rate 提升以 AdCogs 净增长和店铺净增长两个口径衡量。</p>
+    <div class="kpi-strip" id="kpiStrip"></div>
+
+    <div class="card" style="margin-top:16px;display:none" id="monthDetailCard">
+      <div class="card-header"><h3 id="monthDetailTitle">月度营销回顾</h3><span style="font-size:12px;color:var(--muted)" id="monthDetailBadge"></span></div>
+      <div id="monthDetailContent"></div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="card-header"><h3>AdCogs 净增长趋势（FD / RR / 合计）</h3><span style="font-size:12px;color:var(--muted)">单位：USD</span></div>
+      <div class="charts">
+        <div class="ch-wrap"><canvas id="chartAdcogs"></canvas></div>
+        <div class="ch-wrap"><canvas id="chartShops"></canvas></div>
+        <div class="ch-wrap"><canvas id="chartEff"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ 2. 转化 ════ -->
+  <div class="section">
+    <div class="section-title"><span class="num">2</span>转化情况——全量明细与市场拆解</div>
+    <p class="section-desc">月份之间横向对比，关注 adoption 的持续增长趋势及市场差异。</p>
+
+    <div class="card">
+      <div class="card-header"><h3>整体表现汇总</h3><span style="font-size:12px;color:var(--muted)">按月 × 产品维度</span></div>
+      <div class="tbl-wrap" id="tblOverall"></div>
+    </div>
+  </div>
+
+  <!-- ════ 3. 战术 ════ -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span>核心战术——月度演进</div>
+    <p class="section-desc">从单一折扣到组合激励的 6 个月演进路径，沉淀可复制的方法论。</p>
+
+    <div class="timeline" id="tacticsTimeline"></div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="card-header"><h3>方法论沉淀</h3></div>
+      <div class="insight-row" id="tacticsDetail"></div>
+    </div>
+  </div>
+
+  <!-- ════ 4. 价格响应曲线 ════ -->
+  <div class="section">
+    <div class="section-title"><span class="num">4</span>价格需求响应——折扣 vs 转化率</div>
+    <p class="section-desc">基于 1–7 月真实投放数据（42 条样本），按产品与市场组合观察折扣力度与 adcogs 转化率的关系。数据源：价格转化率敏感度曲线.xlsx。</p>
+
+    <div class="card">
+      <div class="curve-grid">
+        <div class="curve-ctrl">
+          <div class="field"><label>产品</label><select id="curveProduct"></select></div>
+          <div class="field"><label>市场</label><select id="curveMarket"></select></div>
+          <button class="btn" type="button" id="curveFilterBtn">查看曲线</button>
+          <hr style="border:none;border-top:1px solid var(--border);margin:4px 0">
+          <form id="curveForm">
+            <div class="field"><label>新增样本折扣（%）</label><input id="discount" type="number" step="0.1" placeholder="如 25"></div>
+            <div class="field"><label>新增样本转化率（%）</label><input id="conversion" type="number" step="0.01" placeholder="如 3.2"></div>
+            <button class="btn" type="submit">添加样本</button>
+          </form>
+        </div>
+        <div>
+          <div class="ch-wrap"><canvas id="chartCurve"></canvas></div>
+          <div class="result-box" id="curveSummary"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>最优折扣一览——按产品 × 市场</h3><span style="font-size:12px;color:var(--muted)">取各组合中转化率最高的折扣档</span></div>
+      <div class="tbl-wrap" id="tblOptimalDiscount"></div>
+    </div>
+  </div>
+
+  <!-- ════ 5. 全量画像 ════ -->
+  <div class="section">
+    <div class="section-title"><span class="num">5</span>全量加入卖家画像——哪种卖家加入意愿更强？</div>
+    <p class="section-desc">数据来源：AI 文件夹 <code>FD全量加入卖家info_20260804.csv</code>（23,674 条）和 <code>RR全量加入卖家info_20260804.csv</code>（3,996 条）。覆盖上线以来所有历史加入记录，从 premium、Team、品类、市场、店龄等维度刻画"谁更愿意加入 ORS"。</p>
+
+    <div class="card">
+      <div class="card-header"><h3>核心维度对比——FD vs RR 全量加入卖家</h3></div>
+      <div class="tbl-wrap" id="tblFullCompare"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Premium（保费率）区间分布——哪个费率区间的卖家加入最多？</h3></div>
+      <div class="tbl-wrap" id="tblFullPremium"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Team × Premium 交叉分析</h3><span style="font-size:12px;color:var(--muted)">同一 Team 内不同 premium 区间的加入密度</span></div>
+      <div class="tbl-wrap" id="tblFullTeamPrem"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>品类 + 市场 + 店龄 TOP 维度</h3></div>
+      <div class="insight-row" id="fullCatMktAge"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>结论：哪种卖家加入意愿更强？</h3></div>
+      <div class="insight-row" id="fullConclusion"></div>
+    </div>
+  </div>
+
+  <!-- ════ 6. H2 策略 ════ -->
+  <div class="section">
+    <div class="section-title"><span class="num">6</span>下半年营销策略——如何有效提升 adoption rate？</div>
+    <p class="section-desc">基于 1–8 模块的完整分析，回答核心问题：H2 营销如何展开。核心口径：<b>adoption rate = enrolled shop adcogs / whitelist adcogs</b>，我们更关注「货值维度」的增长，而非单纯的店铺数量增长。</p>
+
+    <div class="card">
+      <div class="card-header"><h3>核心口径说明</h3></div>
+      <div class="quote">
+        每个店铺在一定周期内产生大量订单，订单金额各不相同。<b>adcogs（Average Daily Cost of Goods Sold）</b>可理解为「单店平均每天发生的订单金额」。加入服务的维度是<b>店铺维度</b>，而保费是<b>by order 维度</b>按百分比服务费率全量收取。因此，<b>adcogs 越高的店铺加入服务，对 total premium 的贡献越大</b>。这就是为什么我们衡量 adoption 时，货值维度（adcogs）比店铺维度（shop count）更关键。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>策略总结——四大主线</h3></div>
+      <div class="insight-row" id="h2StrategySummary"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>下半年营销策略清单（8–12 月）</h3><span style="font-size:12px;color:var(--muted)">数据来源：下半年营销策略清单（8月-12月）.xlsx</span></div>
+      <div class="tbl-wrap" id="tblH2Strategy"></div>
+    </div>
+  </div>
+
+  <!-- ════ 7. 白名单分析 ════ -->
+  <div class="section">
+    <div class="section-title"><span class="num">7</span>当前白名单加入情况分析</div>
+    <p class="section-desc">数据源：FD whitelist_MY+PH / SG+TH+VN（111,483 条）与 RR whitelist（78,678 条），截止 2026/08/14。fd/rr_daily_shop_status_screenshot 代表当前加入情况。</p>
+
+    <!-- Part 1 -->
+    <div class="card">
+      <div class="card-header"><h3>第一部分：各市场加入进度 + 月度趋势</h3></div>
+      <div class="curve-ctrl" style="grid-template-columns:180px 180px;display:grid;gap:12px;margin-bottom:14px">
+        <div class="field"><label>产品</label><select id="m10Product" onchange="renderM10Charts()"><option value="ORS-FD">ORS-FD</option><option value="ORS-RR">ORS-RR</option></select></div>
+        <div class="field"><label>市场</label><select id="m10Market" onchange="renderM10Charts()"></select></div>
+      </div>
+      <div class="insight" id="m10Part1Summary" style="margin-bottom:14px"></div>
+      <div><h4 style="text-align:center;margin:0 0 6px;font-size:14px">月度加入店铺数量</h4><div class="ch-wrap" style="height:300px"><canvas id="chartM10Shops"></canvas></div></div>
+      <div style="margin-top:16px"><h4 style="text-align:center;margin:0 0 6px;font-size:14px">月度加入 adcogs 加总</h4><div class="ch-wrap" style="height:300px"><canvas id="chartM10Adcogs"></canvas></div></div>
+    </div>
+
+    <!-- Part 2 -->
+    <div class="card">
+      <div class="card-header"><h3>第二部分：当前加入情况多维度下钻</h3><span style="font-size:12px;color:var(--muted)">店铺维度 + adcogs 维度</span></div>
+      <div style="display:flex;gap:10px;margin-bottom:14px">
+        <button class="btn m10btn active" id="btnFD" onclick="renderM10Drill('ORS-FD')">ORS-FD</button>
+        <button class="btn m10btn" id="btnRR" onclick="renderM10Drill('ORS-RR')">ORS-RR</button>
+      </div>
+      <div id="m10DrillContent"></div>
+    </div>
+
+    <!-- Part 3 -->
+    <div class="card">
+      <div class="card-header"><h3>第三部分：白名单优化空间——剔除已退出/受限卖家</h3></div>
+      <div class="insight-row" id="m10WhitelistInsight"></div>
+      <div class="tbl-wrap" id="tblM10Whitelist" style="margin-top:14px"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>adoption rate 试算——当前 vs 剔除 SHOP_DELETE 后</h3></div>
+      <div class="tbl-wrap" id="tblM10AdoptionCalc"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════ DATA ════ -->
+<script>
+// ═══════════════════════════════════════════════
+// 以下所有数据均从 Excel 原文件中精确提取
+// 未做任何编造、推断或美化
+// 来源：
+//   [CNCB]2026Q1 ORS-FD&RR Promotion Outcome Tracker.xlsx
+//   [CNCB]2026Q2 ORS-FD&RR Promotion Outcome Tracker.xlsx
+// ═══════════════════════════════════════════════
+
+
+// ── Module 10 whitelist data (from 3 whitelist CSVs) ──
+window.__M10_DATA__ = {"ORS-FD":{"monthly":{"202607|PH":{"shops":98,"adcogs":13857.92419},"202406|PH":{"shops":1905,"adcogs":59994.47517999996},"202407|PH":{"shops":429,"adcogs":8408.363900000004},"202501|PH":{"shops":256,"adcogs":5210.477659999998},"202412|PH":{"shops":743,"adcogs":28667.477279999992},"202504|PH":{"shops":75,"adcogs":2274.5593700000004},"202411|PH":{"shops":301,"adcogs":13791.026360000002},"202408|PH":{"shops":413,"adcogs":11704.338830000002},"202409|PH":{"shops":325,"adcogs":13509.55664},"202606|PH":{"shops":106,"adcogs":33988.17923999999},"202410|PH":{"shops":254,"adcogs":11148.510430000002},"202507|PH":{"shops":55,"adcogs":5803.6240800000005},"202601|PH":{"shops":99,"adcogs":10839.23376},"202608|PH":{"shops":59,"adcogs":8071.04141},"202506|PH":{"shops":61,"adcogs":3767.2861800000005},"202511|PH":{"shops":100,"adcogs":11173.615340000004},"202605|PH":{"shops":74,"adcogs":10028.24925},"202405|PH":{"shops":16,"adcogs":716.96269},"202510|PH":{"shops":132,"adcogs":10833.436790000007},"202502|PH":{"shops":157,"adcogs":41953.58375},"202503|PH":{"shops":225,"adcogs":6112.106249999997},"202505|PH":{"shops":41,"adcogs":3926.03475},"202604|PH":{"shops":113,"adcogs":10167.497690000002},"202602|PH":{"shops":75,"adcogs":7158.14599},"202512|PH":{"shops":62,"adcogs":6038.864380000001},"202508|PH":{"shops":106,"adcogs":12578.727610000002},"202603|PH":{"shops":114,"adcogs":9809.03627},"202412|MY":{"shops":903,"adcogs":23513.345899999997},"202406|MY":{"shops":2477,"adcogs":87349.23388999999},"202411|MY":{"shops":383,"adcogs":11398.615370000001},"202608|MY":{"shops":70,"adcogs":5674.8956499999995},"202407|MY":{"shops":505,"adcogs":26853.818210000016},"202603|MY":{"shops":224,"adcogs":19545.72189},"202604|MY":{"shops":149,"adcogs":12630.945219999998},"202408|MY":{"shops":534,"adcogs":12399.803230000001},"202512|MY":{"shops":108,"adcogs":7132.157579999997},"202606|MY":{"shops":186,"adcogs":12301.841229999995},"202501|MY":{"shops":397,"adcogs":8179.00052},"202607|MY":{"shops":149,"adcogs":15976.86656},"202410|MY":{"shops":372,"adcogs":9510.735199999994},"202502|MY":{"shops":192,"adcogs":29400.29936999999},"202503|MY":{"shops":351,"adcogs":13726.643759999997},"202511|MY":{"shops":140,"adcogs":9350.722549999999},"202510|MY":{"shops":158,"adcogs":13378.598520000007},"202504|MY":{"shops":50,"adcogs":1648.6057199999998},"202601|MY":{"shops":152,"adcogs":11047.942729999997},"202509|MY":{"shops":156,"adcogs":10658.286520000001},"202505|MY":{"shops":52,"adcogs":4005.6163299999994},"202409|MY":{"shops":484,"adcogs":15485.035849999997},"202508|MY":{"shops":142,"adcogs":16610.745539999996},"202507|MY":{"shops":60,"adcogs":3321.8318400000003},"202605|MY":{"shops":119,"adcogs":6674.55751},"202506|MY":{"shops":64,"adcogs":3414.9170000000004},"202602|MY":{"shops":109,"adcogs":5131.825690000001},"202509|PH":{"shops":108,"adcogs":7577.68362},"202405|MY":{"shops":6,"adcogs":101.65556},"202606|SG":{"shops":83,"adcogs":4625.94505},"202503|SG":{"shops":1233,"adcogs":36922.29347999999},"202512|SG":{"shops":59,"adcogs":3174.80126},"202511|SG":{"shops":92,"adcogs":9195.04229},"202607|SG":{"shops":80,"adcogs":10943.05841},"202507|SG":{"shops":189,"adcogs":5332.664089999998},"202506|SG":{"shops":173,"adcogs":3914.1012900000005},"202505|SG":{"shops":204,"adcogs":4388.414170000001},"202504|SG":{"shops":165,"adcogs":4591.811449999999},"202603|SG":{"shops":99,"adcogs":5746.78002},"202510|SG":{"shops":119,"adcogs":7906.620560000001},"202605|SG":{"shops":70,"adcogs":4375.60216},"202508|SG":{"shops":427,"adcogs":18235.13374000001},"202509|SG":{"shops":74,"adcogs":7256.257249999999},"202601|SG":{"shops":82,"adcogs":4464.536399999998},"202602|SG":{"shops":56,"adcogs":3283.3854300000003},"202604|SG":{"shops":80,"adcogs":4936.157700000001},"202502|VN":{"shops":249,"adcogs":11120.538379999993},"202412|VN":{"shops":1349,"adcogs":32521.97046999996},"202501|VN":{"shops":318,"adcogs":4709.609260000001},"202503|VN":{"shops":453,"adcogs":8475.310159999995},"202607|VN":{"shops":127,"adcogs":13948.906409999996},"202601|VN":{"shops":101,"adcogs":7858.632039999999},"202509|VN":{"shops":115,"adcogs":7700.936209999999},"202505|VN":{"shops":62,"adcogs":1661.40221},"202504|VN":{"shops":168,"adcogs":2449.2440599999995},"202510|VN":{"shops":129,"adcogs":6749.707629999997},"202506|VN":{"shops":61,"adcogs":2487.5756899999997},"202608|VN":{"shops":60,"adcogs":6068.31807},"202606|VN":{"shops":132,"adcogs":7339.332679999996},"202512|VN":{"shops":80,"adcogs":5727.288910000001},"202605|VN":{"shops":78,"adcogs":14049.86973},"202511|VN":{"shops":93,"adcogs":6874.735960000001},"202603|VN":{"shops":109,"adcogs":10517.928679999992},"202505|TH":{"shops":58,"adcogs":3942.3838200000005},"202501|TH":{"shops":358,"adcogs":12584.367540000005},"202601|TH":{"shops":132,"adcogs":15177.482419999997},"202502|TH":{"shops":278,"adcogs":21933.0159},"202412|TH":{"shops":1693,"adcogs":73605.24389999999},"202503|TH":{"shops":528,"adcogs":19879.435040000004},"202604|TH":{"shops":144,"adcogs":13546.036390000005},"202606|TH":{"shops":293,"adcogs":21553.478180000002},"202510|TH":{"shops":162,"adcogs":11634.211920000002},"202511|TH":{"shops":128,"adcogs":14339.670260000004},"202608|TH":{"shops":66,"adcogs":4538.88521},"202607|TH":{"shops":107,"adcogs":12623.178910000002},"202508|TH":{"shops":173,"adcogs":16418.039119999998},"202509|TH":{"shops":115,"adcogs":11630.836679999995},"202512|TH":{"shops":123,"adcogs":11444.40408},"202603|TH":{"shops":172,"adcogs":16988.85606000001},"202507|TH":{"shops":70,"adcogs":4746.80177},"202602|TH":{"shops":111,"adcogs":6258.022190000001},"202605|TH":{"shops":138,"adcogs":16823.06017},"202506|TH":{"shops":80,"adcogs":7010.793500000001},"202604|VN":{"shops":86,"adcogs":6429.2744699999985},"202508|VN":{"shops":109,"adcogs":7863.805399999997},"202507|VN":{"shops":56,"adcogs":2629.567109999999},"202504|TH":{"shops":88,"adcogs":6063.848180000002},"202608|SG":{"shops":24,"adcogs":1383.86218},"202602|VN":{"shops":74,"adcogs":5462.030409999999},"202501|SG":{"shops":2,"adcogs":0.96828}},"drill":{"market":{"PH":{"wh_shops":26735,"wh_adcogs":4625908.45395001,"on_shops":6502,"on_adcogs":369110.0188900007},"MY":{"wh_shops":28264,"wh_adcogs":2720850.090939995,"on_shops":8693,"on_adcogs":396498.9339600017},"SG":{"wh_shops":14199,"wh_adcogs":1147311.0488800013,"on_shops":3311,"on_adcogs":140677.4352099998},"VN":{"wh_shops":18948,"wh_adcogs":2160774.3855899842,"on_shops":4010,"on_adcogs":172652.34968000016},"TH":{"wh_shops":23337,"wh_adcogs":3087007.085040001,"on_shops":5018,"on_adcogs":323094.7637899998}},"shop_type":{"pure SLS shop":{"wh_shops":88816,"wh_adcogs":7054987.5997500075,"on_shops":23789,"on_adcogs":813687.6094000026},"3PF-PFF":{"wh_shops":12965,"wh_adcogs":3843627.292099999,"on_shops":1684,"on_adcogs":301785.1746599999},"FBS-PFF":{"wh_shops":7866,"wh_adcogs":2439079.140069996,"on_shops":1696,"on_adcogs":247108.07578999954},"Other":{"wh_shops":1836,"wh_adcogs":404157.03248000005,"on_shops":365,"on_adcogs":39452.64167999998}},"team":{"LT":{"wh_shops":75770,"wh_adcogs":4854408.938720001,"on_shops":22874,"on_adcogs":825320.7956000019},"UST":{"wh_shops":15665,"wh_adcogs":1240945.1601500046,"on_shops":868,"on_adcogs":39114.368679999985},"ST":{"wh_shops":16886,"wh_adcogs":7030156.43869001,"on_shops":1888,"on_adcogs":522845.7008600005},"Other":{"wh_shops":3162,"wh_adcogs":616340.5268400003,"on_shops":1904,"on_adcogs":14752.636389999989}},"rate":{"0-2%":{"wh_shops":20635,"wh_adcogs":2503419.687579982,"on_shops":13809,"on_adcogs":1275360.6878700056},"2-4%":{"wh_shops":667,"wh_adcogs":47299.91803999999,"on_shops":331,"on_adcogs":22218.218520000002},"4-6%":{"wh_shops":205,"wh_adcogs":9348.550500000001,"on_shops":109,"on_adcogs":4523.225819999999},"6-10%":{"wh_shops":173,"wh_adcogs":6120.270980000006,"on_shops":96,"on_adcogs":3188.44869},"10%+":{"wh_shops":125,"wh_adcogs":3207.891610000001,"on_shops":86,"on_adcogs":2184.5663299999987}}},"opt":{"SHOP_DELETE":{"shops":4515,"adcogs":6908.780169999999,"on_shops":4447,"on_adcogs":3849.93117},"FROZEN":{"shops":4027,"adcogs":98574.58154999996,"on_shops":3223,"on_adcogs":33958.17806999999},"BANNED":{"shops":88,"adcogs":1096.49062,"on_shops":85,"on_adcogs":295.44128}},"total_wh":{"shops":111483,"adcogs":13741851.064399818,"on_shops":27534,"on_adcogs":1402033.5015300023}},"ORS-RR":{"monthly":{"202511|PH":{"shops":334,"adcogs":27084.434810000006},"202606|PH":{"shops":152,"adcogs":18485.862980000005},"202601|PH":{"shops":186,"adcogs":24924.90149999999},"202605|PH":{"shops":71,"adcogs":31222.59079},"202602|PH":{"shops":115,"adcogs":11914.831850000004},"202604|PH":{"shops":151,"adcogs":10321.960469999995},"202607|VN":{"shops":113,"adcogs":7095.705820000001},"202606|VN":{"shops":368,"adcogs":25410.212509999998},"202608|VN":{"shops":66,"adcogs":4409.61389},"202606|TH":{"shops":408,"adcogs":47603.20069},"202607|TH":{"shops":106,"adcogs":12111.37677},"202607|PH":{"shops":121,"adcogs":17146.213799999998},"202512|PH":{"shops":110,"adcogs":15459.780670000004},"202510|PH":{"shops":28,"adcogs":4774.72724},"202608|TH":{"shops":86,"adcogs":9498.680250000001},"202608|MY":{"shops":68,"adcogs":7412.798040000001},"202605|MY":{"shops":84,"adcogs":3681.6164999999996},"202607|MY":{"shops":109,"adcogs":12981.547190000001},"202606|MY":{"shops":181,"adcogs":12313.450109999994},"202603|MY":{"shops":173,"adcogs":12369.601790000002},"202511|MY":{"shops":365,"adcogs":23323.137650000008},"202601|MY":{"shops":191,"adcogs":17764.681740000004},"202604|MY":{"shops":176,"adcogs":14011.850120000003},"202512|MY":{"shops":95,"adcogs":6356.938900000003},"202603|PH":{"shops":146,"adcogs":13428.26713},"202602|MY":{"shops":106,"adcogs":6117.706720000005},"202608|PH":{"shops":55,"adcogs":8355.346119999997},"202510|MY":{"shops":24,"adcogs":5937.50538},"202605|TH":{"shops":1,"adcogs":0.0}},"drill":{"market":{"PH":{"wh_shops":22448,"wh_adcogs":4475174.809269977,"on_shops":1469,"on_adcogs":183118.9173599999},"VN":{"wh_shops":15358,"wh_adcogs":1937738.2583700004,"on_shops":547,"on_adcogs":36915.53222000001},"TH":{"wh_shops":18885,"wh_adcogs":2893537.9263799977,"on_shops":601,"on_adcogs":69213.25770999996},"MY":{"wh_shops":21987,"wh_adcogs":2540664.8292700197,"on_shops":1572,"on_adcogs":122270.8341399998}},"shop_type":{"FBS-PFF":{"wh_shops":6107,"wh_adcogs":2129248.819070003,"on_shops":477,"on_adcogs":87113.18911999994},"pure SLS shop":{"wh_shops":60031,"wh_adcogs":5795425.663950027,"on_shops":3273,"on_adcogs":247062.37515000033},"3PF-PFF":{"wh_shops":11004,"wh_adcogs":3574171.752580007,"on_shops":379,"on_adcogs":66606.71969000003},"Other":{"wh_shops":1536,"wh_adcogs":348269.5876899997,"on_shops":60,"on_adcogs":10736.25747}},"team":{"LT":{"wh_shops":50882,"wh_adcogs":3862570.3018899546,"on_shops":3620,"on_adcogs":266125.67672000045},"ST":{"wh_shops":13829,"wh_adcogs":6402778.572879989,"on_shops":400,"on_adcogs":133881.17587999988},"UST":{"wh_shops":13011,"wh_adcogs":1077493.4394200027,"on_shops":110,"on_adcogs":6436.395320000001},"Other":{"wh_shops":956,"wh_adcogs":504273.5091000009,"on_shops":59,"on_adcogs":5075.293510000001}},"rate":{"0-2%":{"wh_shops":893,"wh_adcogs":272332.7100800002,"on_shops":661,"on_adcogs":189384.95765},"10%+":{"wh_shops":39,"wh_adcogs":1038.4386499999998,"on_shops":36,"on_adcogs":961.1074},"2-4%":{"wh_shops":171,"wh_adcogs":12908.65513,"on_shops":137,"on_adcogs":9590.835649999999},"4-6%":{"wh_shops":59,"wh_adcogs":2647.21213,"on_shops":46,"on_adcogs":1959.0746900000001},"6-10%":{"wh_shops":36,"wh_adcogs":1921.1562700000004,"on_shops":26,"on_adcogs":1300.1131500000001}}},"opt":{"SHOP_DELETE":{"shops":104,"adcogs":2863.015189999999,"on_shops":52,"on_adcogs":378.05697},"FROZEN":{"shops":690,"adcogs":46561.55890000001,"on_shops":117,"on_adcogs":3377.1557},"BANNED":{"shops":0,"adcogs":0.0,"on_shops":0,"on_adcogs":0.0}},"total_wh":{"shops":78678,"adcogs":11847115.823289922,"on_shops":4189,"on_adcogs":411518.54143000016}}};
+const D = {
+  '202601':{
+    label:'2026/01',discount:'15%–20%',markets:'MY,PH,SG,VN',
+    fd:{shops:217,adcogs:19326.02,eff:0.00435},
+    rr:{shops:366,adcogs:46405.45,eff:0.00823},
+    total:{shops:583,adcogs:65731.47},
+    fdMkt:{MY:{eff:0.00418,discount:15},PH:{eff:0.00336,discount:20},SG:{eff:0.06603,discount:15},VN:{eff:0.02746,discount:15}},
+    rrMkt:{MY:{eff:0.00750,discount:20},PH:{eff:0.00864,discount:20}},
+    highlights:'首次折扣费率营销。RR 的 adcogs 转化率 0.82% 远高于 FD 的 0.44%，说明 RR 场景对折扣更敏感。SG 市场 FD 转化率异常高（6.6%），与极小样本量（12 家店）有关。',
+    tactics:'首次提供 onboard 卖家折扣，圈选 LR≤50% 且 adcogs≥100 的优质卖家，15-20% 小额折扣试水。',
+    targeting:'onboard: LR≤50%, adcogs≥100<br>offboard/null: FD Rate≤4%, RR Rate≤4%'
+  },
+  '202602':{
+    label:'2026/02',discount:'20%–25%',markets:'MY,PH,SG,VN',
+    fd:{shops:376,adcogs:33083.72,eff:0.00493},
+    rr:{shops:258,adcogs:19211.92,eff:0.00340},
+    total:{shops:634,adcogs:52295.64},
+    fdMkt:{MY:{eff:0.00725,discount:20},PH:{eff:0.00296,discount:25},SG:{eff:0.00415,discount:20},VN:{eff:0.00663,discount:20}},
+    rrMkt:{MY:{eff:0.00383,discount:25},PH:{eff:0.00318,discount:25}},
+    highlights:'FD 转化率 0.49% 较上月 +0.05pp，得益于 popup channel 首次投放。RR 转化率 0.34% 较上月 -0.48pp，因 1 月基数偏高且 2 月圈选范围扩大。',
+    tactics:'首次在 popup channel 投放折扣通知；企微应用号增加倒计时提示提升紧迫感；圈选聚焦 offboard/null 店铺。',
+    targeting:'offboard/null: FD≤4%(MY,PH), ≤4%(VN), ≤6%(SG)'
+  },
+  '202603':{
+    label:'2026/03',discount:'20%–25%',markets:'MY,PH,SG,VN',
+    fd:{shops:400,adcogs:30331.87,eff:0.00404},
+    rr:{shops:264,adcogs:19816.97,eff:0.00352},
+    total:{shops:664,adcogs:50148.84},
+    fdMkt:{MY:{eff:0.00593,discount:20},PH:{eff:0.00173,discount:25},SG:{eff:0.00462,discount:20},VN:{eff:0.00698,discount:20}},
+    rrMkt:{MY:{eff:0.00461,discount:25},PH:{eff:0.00297,discount:25}},
+    highlights:'店铺净增长 664 家创 H1 最高。与季度排行榜宣传期交叉带来额外曝光。FD 转化率 0.40% 较上月 -0.09pp，PH 市场 FD 转化率仅 0.17% 拉低整体水平。',
+    tactics:'延续 popup channel；活动时间与季度排行榜宣传期交叉，借用排行榜流量放大触达。扩大 PH 圈选至 ≤6%。',
+    targeting:'FD: SG≤6%,VN≤6%,MY≤4%,PH≤6%<br>RR: MY≤6%,PH≤6%'
+  },
+  '202604':{
+    label:'2026/04',discount:'25%–30%',markets:'MY,PH,SG,VN',
+    fd:{shops:325,adcogs:23568.81,eff:0.00323},
+    rr:{shops:212,adcogs:14714.61,eff:0.00273},
+    total:{shops:537,adcogs:38283.41},
+    fdMkt:{MY:{eff:0.00408,discount:25},PH:{eff:0.00190,discount:30},SG:{eff:0.00254,discount:25},VN:{eff:0.00573,discount:25}},
+    rrMkt:{MY:{eff:0.00453,discount:30},PH:{eff:0.00176,discount:30}},
+    highlights:'折扣加码至 25-30%，分母大幅扩大（投放 60,283 家）。FD 转化率 0.32% 较上月 -0.08pp，RR 转化率 0.27% 较上月 -0.08pp。数据验证：91% 新加入卖家 FD rate≤4%。',
+    tactics:'折扣加码至 25-30%；维持 popup channel；数据回测验证圈选逻辑准确性。',
+    targeting:'FD: SG≤6%,VN≤6%,MY≤4%,PH≤6%<br>RR: MY≤6%,PH≤6%'
+  },
+  '202605':{
+    label:'2026/05',discount:'25%–30%',markets:'MY,PH,SG,VN',
+    fd:{shops:338,adcogs:23344.06,eff:0.00324},
+    rr:{shops:191,adcogs:13982.52,eff:0.00264},
+    total:{shops:529,adcogs:37326.57},
+    fdMkt:{MY:{eff:0.00344,discount:25},PH:{eff:0.00268,discount:30},SG:{eff:0.00296,discount:25},VN:{eff:0.00449,discount:25}},
+    rrMkt:{MY:{eff:0.00236,discount:30},PH:{eff:0.00280,discount:30}},
+    highlights:'FD 转化率 0.32% 与上月持平，RR 转化率 0.26% 较上月 -0.01pp，降幅显著收窄，趋势企稳。MY 放宽圈选至 ≤6% 后覆盖面扩大。',
+    tactics:'维持 25-30% 折扣；MY 放宽至 ≤6% 扩大覆盖；持续 popup channel 投放。',
+    targeting:'FD: SG≤6%,VN≤6%,MY≤6%,PH≤6%<br>RR: MY≤6%,PH≤6%'
+  },
+  '202606':{
+    label:'2026/06',discount:'25%–30% + $50 广告金',markets:'MY,PH,SG,VN,TH',
+    fd:{shops:85,adcogs:20431.43,eff:0.00246},
+    rr:{shops:90,adcogs:18668.45,eff:0.00370},
+    total:{shops:175,adcogs:39099.88},
+    fdMkt:{MY:{eff:null,discount:25},PH:{eff:null,discount:30},SG:{eff:null,discount:25},VN:{eff:null,discount:25}},
+    rrMkt:{MY:{eff:null,discount:30},PH:{eff:null,discount:30}},
+    highlights:'新增线上回捞计划，面向已流失卖家推出"前 100 位 $50 广告金"双重福利。AdCogs 净增长 39,100 较 5 月 +4.75%，RR 贡献 33.51% 环比增长。折扣费率部分贡献 109 店/15,532 adcogs，广告金加码部分贡献 66 店/23,568 adcogs。广告金加码投放效率 0.034，是普通折扣费率的 29 倍。',
+    tactics:'首次叠加广告金激励（前 100 位 $50）；折扣费率与广告金双通道并行；面向已流失卖家精准回捞。',
+    targeting:'折扣费率: SG≤6%,VN≤6%,MY≤6%,PH≤6%,TH≤6%,adcogs≥50<br>广告金加码: 前 100 位高价值流失卖家'
+  },
+  '202607':{
+    label:'2026/07',discount:'30%–40% + $30 广告金',markets:'MY,PH,SG,VN,TH',
+    fd:{shops:180,adcogs:45978.52,eff:0.00510},
+    rr:{shops:154,adcogs:30950.62,eff:0.00470},
+    total:{shops:334,adcogs:76929.15},
+    fdMkt:{MY:{eff:null,discount:30},PH:{eff:null,discount:35},SG:{eff:null,discount:30},VN:{eff:null,discount:30}},
+    rrMkt:{MY:{eff:null,discount:35},PH:{eff:null,discount:35}},
+    highlights:'7月试行3套并行策略：\n① 单月折扣+前88席$30广告金——主力策略，贡献280店/$63.4k adcogs\n② 三月折扣（90天锁定）——39店/$10.1k，测试长周期留存\n③ 卖家激励大会专属权益（$60广告金×88席）——15店/$3.5k，制造稀缺感\n\nAdCogs净增长$76,929较6月+96.75%，FD+125%，RR+66%。扩受众+广告金模型验证成功。',
+    tactics:'①单月折扣+前88席$30广告金——扩受众至拉新+回捞，纳入BAU月度运营\n②三月折扣——锁定90天，测试长周期留存\n③卖家激励大会专属——前88席$60广告金，制造稀缺感',
+    targeting:'策略①: offboard&null, rate≤6%, adcogs≥50, 广告金$30×88席\n策略②: offboard&null, rate≤6%, adcogs≥50, 三个月锁定折扣\n策略③: 卖家激励大会定向邀请, 广告金$60×88席'
+  }
+};
+const MONTHS = ['202601','202602','202603','202604','202605','202606','202607'];
+
+// ── helpers ──
+const fmtK = v => '$'+(v/1000).toFixed(1)+'k';
+const fmtPct = v => (v*100).toFixed(3)+'%';
+const fmtPct2 = v => (v*100).toFixed(2)+'%';
+const mom = (cur,prev) => prev ? ((cur-prev)/prev*100) : null;
+const momStr = (cur,prev) => { const d=mom(cur,prev); return d===null?'—':((d>0?'+':'')+d.toFixed(1)+'%'); };
+const momCls = (cur,prev) => { const d=mom(cur,prev); return d===null?'':(d>0?'up':'down'); };
+
+// ════ NATIVE CANVAS CHART RENDERER ════
+// Zero external dependencies – pure Canvas 2D API
+const COLORS = { orange:'#F4743B', blue:'#3b82f6', gray:'#9ca3af', muted:'#6b7280', grid:'#e5e7eb', white:'#ffffff' };
+
+function initCanvas(id){
+  var c=document.getElementById(id), dpr=window.devicePixelRatio||1;
+  var w=c.parentElement.clientWidth, h=c.parentElement.clientHeight;
+  c.width=w*dpr; c.height=h*dpr; c.style.width=w+'px'; c.style.height=h+'px';
+  var ctx=c.getContext('2d'); ctx.scale(dpr,dpr);
+  return {ctx:ctx, w:w, h:h, c:c};
+}
+
+// ── Bar chart (AdCogs) ──
+function drawBarChart(id, labels, series1, series2, label1, label2, yLabel){
+  var ch=initCanvas(id), ctx=ch.ctx, w=ch.w, h=ch.h;
+  var pad={top:20, right:20, bottom:50, left:55};
+  var pw=w-pad.left-pad.right, ph=h-pad.top-pad.bottom;
+  // Y axis
+  var max=0;
+  for(var i=0;i<series1.length;i++){ max=Math.max(max,series1[i]+series2[i]); }
+  max=Math.ceil(max/10000)*10000;
+  // Draw bg
+  ctx.fillStyle=COLORS.white; ctx.fillRect(0,0,w,h);
+  // Grid lines
+  ctx.strokeStyle=COLORS.grid; ctx.lineWidth=1;
+  var steps=5, step=max/steps;
+  for(var i=0;i<=steps;i++){
+    var y=pad.top+ph-(ph*i/steps);
+    ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(w-pad.right,y); ctx.stroke();
+    ctx.fillStyle=COLORS.muted; ctx.font='10px "Microsoft YaHei",sans-serif'; ctx.textAlign='right';
+    ctx.fillText('$'+(step*i/1000).toFixed(0)+'k', pad.left-6, y+4);
+  }
+  // Bars
+  var barW=(pw/series1.length)*0.3, gap=pw/series1.length;
+  for(var s=0;s<2;s++){
+    var vals=s===0?series1:series2, col=s===0?COLORS.orange:COLORS.blue;
+    ctx.fillStyle=col;
+    for(var i=0;i<vals.length;i++){
+      var x=pad.left+gap*i+gap*0.25+(s*gap*0.25);
+      var barH=(vals[i]/max)*ph;
+      var y=pad.top+ph-barH;
+      roundRect(ctx,x,y,barW,barH,4);
+      ctx.fill();
+    }
+  }
+  // X labels
+  ctx.fillStyle='#1a1f36'; ctx.font='11px "Microsoft YaHei",sans-serif'; ctx.textAlign='center';
+  for(var i=0;i<labels.length;i++){
+    ctx.fillText(labels[i], pad.left+gap*i+gap*0.5, h-pad.bottom+20);
+  }
+  // Y label
+  ctx.fillStyle=COLORS.muted; ctx.textAlign='center';
+  ctx.save(); ctx.translate(14,pad.top+ph/2); ctx.rotate(-Math.PI/2); ctx.fillText(yLabel,0,0); ctx.restore();
+  // Legend
+  ctx.fillStyle=COLORS.orange; ctx.fillRect(pad.left,8,10,10);
+  ctx.fillStyle='#1a1f36'; ctx.font='11px "Microsoft YaHei",sans-serif'; ctx.textAlign='left';
+  ctx.fillText(label1,pad.left+14,17);
+  ctx.fillStyle=COLORS.blue; ctx.fillRect(pad.left+80,8,10,10);
+  ctx.fillText(label2,pad.left+94,17);
+}
+
+// ── Line chart (Shops, Efficiency) ──
+function drawLineChart(id, labels, datasets, yLabel, pct){
+  var ch=initCanvas(id), ctx=ch.ctx, w=ch.w, h=ch.h;
+  var pad={top:20, right:20, bottom:50, left:55};
+  var pw=w-pad.left-pad.right, ph=h-pad.top-pad.bottom;
+  // Find min/max
+  var all=[], min=Infinity, max=-Infinity;
+  for(var d=0;d<datasets.length;d++){
+    for(var i=0;i<datasets[d].data.length;i++){
+      var v=datasets[d].data[i]; all.push(v); min=Math.min(min,v); max=Math.max(max,v);
+    }
+  }
+  if(min===max){min=min*0.9;max=max*1.1}
+  else{var r=max-min;min-=r*0.1;max+=r*0.1}
+  if(min<0)min=0;
+  // Bg
+  ctx.fillStyle=COLORS.white; ctx.fillRect(0,0,w,h);
+  // Grid
+  ctx.strokeStyle=COLORS.grid; ctx.lineWidth=1;
+  var steps=5, step=(max-min)/steps;
+  for(var i=0;i<=steps;i++){
+    var y=pad.top+ph-(ph*i/steps);
+    ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(w-pad.right,y); ctx.stroke();
+    ctx.fillStyle=COLORS.muted; ctx.font='10px "Microsoft YaHei",sans-serif'; ctx.textAlign='right';
+    var val=min+step*i;
+    ctx.fillText(pct?(val.toFixed(2)+'%'):Math.round(val).toString(), pad.left-6, y+4);
+  }
+  // Lines
+  var xGap=pw/(datasets[0].data.length-1||1);
+  for(var d=0;d<datasets.length;d++){
+    var ds=datasets[d];
+    ctx.strokeStyle=ds.color||COLORS.gray; ctx.lineWidth=ds.dash?1.5:2;
+    ctx.setLineDash(ds.dash||[]);
+    ctx.beginPath();
+    for(var i=0;i<ds.data.length;i++){
+      var x=pad.left+xGap*i;
+      var y=pad.top+ph-((ds.data[i]-min)/(max-min))*ph;
+      if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // Points
+    ctx.fillStyle=ds.color||COLORS.gray;
+    for(var i=0;i<ds.data.length;i++){
+      var x=pad.left+xGap*i;
+      var y=pad.top+ph-((ds.data[i]-min)/(max-min))*ph;
+      ctx.beginPath(); ctx.arc(x,y,ds.dash?2:3.5,0,Math.PI*2); ctx.fill();
+    }
+  }
+  // X labels (thin out when too many to avoid overlap)
+  ctx.fillStyle='#1a1f36'; ctx.font='11px "Microsoft YaHei",sans-serif'; ctx.textAlign='center';
+  var step = labels.length > 14 ? Math.ceil(labels.length / 12) : 1;
+  for(var i=0;i<labels.length;i++){ if(i % step === 0 || i === labels.length-1){ ctx.fillText(labels[i], pad.left+xGap*i, h-pad.bottom+20); } }
+  // Y label
+  ctx.fillStyle=COLORS.muted; ctx.textAlign='center';
+  ctx.save(); ctx.translate(14,pad.top+ph/2); ctx.rotate(-Math.PI/2); ctx.fillText(yLabel,0,0); ctx.restore();
+  // Legend
+  var lx=pad.left;
+  for(var d=0;d<datasets.length;d++){
+    ctx.fillStyle=datasets[d].color; ctx.fillRect(lx,6,10,10);
+    ctx.fillStyle='#1a1f36'; ctx.font='10px "Microsoft YaHei",sans-serif'; ctx.textAlign='left';
+    ctx.fillText(datasets[d].label,lx+13,15);
+    lx+=ctx.measureText(datasets[d].label).width+26;
+  }
+}
+
+// ── Scatter chart (Price curve) ──
+function drawScatterChart(id, pts){
+  var ch=initCanvas(id), ctx=ch.ctx, w=ch.w, h=ch.h;
+  var pad={top:20, right:25, bottom:50, left:55};
+  var pw=w-pad.left-pad.right, ph=h-pad.top-pad.bottom;
+  if(pts.length===0) return;
+  // Find ranges
+  var xMin=10,xMax=35,yMin=0,yMax=0;
+  for(var i=0;i<pts.length;i++){yMax=Math.max(yMax,pts[i].y)}
+  yMax=yMax*1.2||1;
+  // Bg
+  ctx.fillStyle=COLORS.white; ctx.fillRect(0,0,w,h);
+  // Grid
+  ctx.strokeStyle=COLORS.grid; ctx.lineWidth=1;
+  var ySteps=5, yStep=yMax/ySteps;
+  for(var i=0;i<=ySteps;i++){
+    var y=pad.top+ph-(ph*i/ySteps);
+    ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(w-pad.right,y); ctx.stroke();
+    ctx.fillStyle=COLORS.muted; ctx.font='10px "Microsoft YaHei",sans-serif'; ctx.textAlign='right';
+    ctx.fillText((yStep*i).toFixed(2)+'%', pad.left-6, y+4);
+  }
+  var xSteps=[15,20,25,30,35];
+  for(var i=0;i<xSteps.length;i++){
+    var x=pad.left+((xSteps[i]-xMin)/(xMax-xMin))*pw;
+    ctx.beginPath(); ctx.moveTo(x,pad.top); ctx.lineTo(x,pad.top+ph); ctx.stroke();
+    ctx.fillStyle=COLORS.muted; ctx.font='10px "Microsoft YaHei",sans-serif'; ctx.textAlign='center';
+    ctx.fillText(xSteps[i]+'%', x, h-pad.bottom+16);
+  }
+  // Sort for line
+  var sorted=pts.slice().sort(function(a,b){return a.x-b.x});
+  // Trend line
+  ctx.strokeStyle=COLORS.gray; ctx.lineWidth=1.5; ctx.setLineDash([5,4]);
+  ctx.beginPath();
+  for(var i=0;i<sorted.length;i++){
+    var sx=pad.left+((sorted[i].x-xMin)/(xMax-xMin))*pw;
+    var sy=pad.top+ph-(sorted[i].y/yMax)*ph;
+    if(i===0)ctx.moveTo(sx,sy); else ctx.lineTo(sx,sy);
+  }
+  ctx.stroke(); ctx.setLineDash([]);
+  // Points
+  for(var i=0;i<pts.length;i++){
+    var px=pad.left+((pts[i].x-xMin)/(xMax-xMin))*pw;
+    var py=pad.top+ph-(pts[i].y/yMax)*ph;
+    ctx.fillStyle=COLORS.orange; ctx.beginPath(); ctx.arc(px,py,5,0,Math.PI*2); ctx.fill();
+    // Time label
+    if(pts[i].time){
+      ctx.fillStyle='#1a1f36'; ctx.font='9px "Microsoft YaHei",sans-serif'; ctx.textAlign='left';
+      var lbl=String(pts[i].time).slice(4,6)+'月';
+      ctx.fillText(lbl,px+8,py-6);
+    }
+  }
+  // Axis labels
+  ctx.fillStyle=COLORS.muted; ctx.font='12px "Microsoft YaHei",sans-serif'; ctx.textAlign='center';
+  ctx.fillText('折扣力度 (%)', pad.left+pw/2, h-4);
+  ctx.save(); ctx.translate(14,pad.top+ph/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText('adcogs 转化率 (%)',0,0); ctx.restore();
+}
+
+// Rounded rect helper
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+// Resize handler
+function redrawAll(){
+  drawLineChart('chartAdcogs', MONTHS.map(function(m){return D[m].label.replace('2026/','')+'月'}),[
+    {label:'FD',data:MONTHS.map(function(m){return D[m].fd.adcogs}),color:COLORS.orange},
+    {label:'RR',data:MONTHS.map(function(m){return D[m].rr.adcogs}),color:COLORS.blue},
+    {label:'合计',data:MONTHS.map(function(m){return D[m].total.adcogs}),color:COLORS.gray,dash:[4,3]}
+  ],'USD',false);
+  drawLineChart('chartShops', MONTHS.map(function(m){return D[m].label.replace('2026/','')+'月'}),[
+    {label:'FD 店铺',data:MONTHS.map(function(m){return D[m].fd.shops}),color:COLORS.orange},
+    {label:'RR 店铺',data:MONTHS.map(function(m){return D[m].rr.shops}),color:COLORS.blue},
+    {label:'合计',data:MONTHS.map(function(m){return D[m].total.shops}),color:COLORS.gray,dash:[4,3]}
+  ],'店铺数',false);
+  drawLineChart('chartEff', MONTHS.map(function(m){return D[m].label.replace('2026/','')+'月'}),[
+    {label:'FD 投放效率',data:MONTHS.map(function(m){return D[m].fd.eff*100}),color:COLORS.orange},
+    {label:'RR 投放效率',data:MONTHS.map(function(m){return D[m].rr.eff*100}),color:COLORS.blue}
+  ],'投放效率 (%)',true);
+  drawCurveChart();
+  if(typeof renderM10Charts === 'function') renderM10Charts();
+}
+window.addEventListener('resize',redrawAll);
+(function(){
+  let h='';
+  MONTHS.forEach((m,i)=>{
+    const d=D[m],prev=i>0?D[MONTHS[i-1]]:null;
+    h+=`<div class="kpi-item" id="kpi-${m}" onclick="showMonthDetail('${m}')">
+      <div class="mo">${d.label}</div>
+      <div class="big">${fmtK(d.total.adcogs)}</div>
+      <div class="sub" style="color:${prev?(mom(d.total.adcogs,prev.total.adcogs)>0?'#059669':'#dc2626'):'var(--muted)'}">${prev?momStr(d.total.adcogs,prev.total.adcogs):'—'} MOM</div>
+      <div class="sub">店铺 +${d.total.shops} · ${d.discount}</div>
+    </div>`;
+  });
+  document.getElementById('kpiStrip').innerHTML=h;
+})();
+
+// ════ 1. KPI STRIP ════
+var activeMonth = '202607';
+
+function showMonthDetail(m){
+  activeMonth = m;
+  document.querySelectorAll('.kpi-item').forEach(function(el){el.classList.remove('active')});
+  var card = document.getElementById('kpi-'+m);
+  if(card) card.classList.add('active');
+  var d = D[m]; if(!d) return;
+  var cardEl = document.getElementById('monthDetailCard');
+  cardEl.style.display = 'block';
+  document.getElementById('monthDetailTitle').textContent = d.label + ' 营销回顾与结论';
+  document.getElementById('monthDetailBadge').textContent = '折扣: ' + d.discount + ' | 市场: ' + d.markets;
+  var prev = MONTHS[MONTHS.indexOf(m)-1], prevD = prev ? D[prev] : null;
+  var fdMom = prevD ? momStr(d.fd.adcogs, prevD.fd.adcogs) : '—';
+  var rrMom = prevD ? momStr(d.rr.adcogs, prevD.rr.adcogs) : '—';
+  var totalMom = prevD ? momStr(d.total.adcogs, prevD.total.adcogs) : '—';
+  var mc = function(s){ return s.indexOf('+')===0||s.indexOf('↑')===0 ? '#059669' : (s.indexOf('-')===0||s.indexOf('↓')===0 ? '#dc2626' : 'var(--muted)'); };
+  var html = '<div class="insight-row" style="margin-bottom:14px">'+
+    '<div class="insight"><b>核心指标 vs 上月</b><br>'+
+    '<table style="margin-top:8px"><tr><th></th><th>FD</th><th>RR</th><th>合计</th></tr>'+
+    '<tr><td>店铺净增</td><td class="num">'+d.fd.shops+'</td><td class="num">'+d.rr.shops+'</td><td class="num"><b>'+d.total.shops+'</b></td></tr>'+
+    '<tr><td>AdCogs 净增</td><td class="num hi">'+fmtK(d.fd.adcogs)+'</td><td class="num hi">'+fmtK(d.rr.adcogs)+'</td><td class="num"><b>'+fmtK(d.total.adcogs)+'</b></td></tr>'+
+    '<tr><td>MOM</td><td style="color:'+mc(fdMom)+'">'+fdMom+'</td><td style="color:'+mc(rrMom)+'">'+rrMom+'</td><td style="color:'+mc(totalMom)+';font-weight:700">'+totalMom+'</td></tr>'+
+    '<tr><td>投放效率</td><td class="num">'+fmtPct(d.fd.eff)+'</td><td class="num">'+fmtPct(d.rr.eff)+'</td><td class="num">—</td></tr>'+
+    '</table></div>'+
+    '<div class="insight"><b>核心发现</b><br>'+d.highlights.replace(/\n/g,'<br>')+'</div>'+
+    '</div>'+
+    '<div class="insight-row" style="margin-bottom:14px">'+
+    '<div class="insight"><b>营销策略</b><br>'+d.tactics.replace(/\n/g,'<br>')+'</div>'+
+    '<div class="insight"><b>圈选逻辑</b><br>'+d.targeting.replace(/\n/g,'<br>')+'</div>'+
+    '</div>'+
+    '<div class="quote"><b>'+d.label+' 小结：</b>'+
+    (m==='202607' ? '7月验证了"扩受众+广告金"的规模化增长模型。三策略并行下AdCogs环比+96.8%，FD+125%。核心结论：<b>从单一折扣升级为折扣+广告金+多策略并行的组合模型，是规模化增长的正确路径。</b>下一步：固化策略①为BAU、放量测试策略②、落地转化卡点破局动作，从验证有效进入规模放量阶段。' :
+     d.highlights.split('。')[0]+'。')+
+    '</div>';
+  document.getElementById('monthDetailContent').innerHTML = html;
+  cardEl.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ════ 2. TABLES ════
+(function(){
+  let h='<table><thead><tr><th>月份</th><th>折扣力度</th><th>FD 店铺净增</th><th>FD AdCogs 净增</th><th>FD 投放效率</th><th>RR 店铺净增</th><th>RR AdCogs 净增</th><th>RR 投放效率</th><th>合计店铺</th><th>合计 AdCogs</th><th>AdCogs MOM</th></tr></thead><tbody>';
+  MONTHS.forEach((m,i)=>{
+    const d=D[m],prev=i>0?D[MONTHS[i-1]]:null;
+    const cls=momCls(d.total.adcogs,prev?prev.total.adcogs:null);
+    h+=`<tr>
+      <td><b>${d.label}</b></td><td>${d.discount}</td>
+      <td class="num">${d.fd.shops}</td><td class="num hi">${fmtK(d.fd.adcogs)}</td><td class="num">${fmtPct(d.fd.eff)}</td>
+      <td class="num">${d.rr.shops}</td><td class="num hi">${fmtK(d.rr.adcogs)}</td><td class="num">${fmtPct(d.rr.eff)}</td>
+      <td class="num"><b>${d.total.shops}</b></td><td class="num"><b>${fmtK(d.total.adcogs)}</b></td>
+      <td class="${cls}">${prev?momStr(d.total.adcogs,prev.total.adcogs):'—'}</td>
+    </tr>`;
+  });
+  h+='</tbody></table>';
+  document.getElementById('tblOverall').innerHTML=h;
+})();
+
+// ════ 3. TACTICS ════
+const tacticsMap = {
+  '202601':{disc:'15-20%',desc:'首次折扣营销<br>onboard+offboard<br>全覆盖试水'},
+  '202602':{disc:'20-25%',desc:'引入 popup channel<br>企微倒计时提示<br>聚焦 offboard/null'},
+  '202603':{disc:'20-25%',desc:'排行榜交叉宣传<br>店铺净增 H1 峰值<br>扩大 PH 圈选'},
+  '202604':{disc:'25-30%',desc:'折扣加码<br>分母大幅扩大<br>验证圈选逻辑'},
+  '202605':{disc:'25-30%',desc:'MY 放宽至 ≤6%<br>转化率趋稳<br>持续 popup'},
+  '202606':{disc:'25-30%+广告金',desc:'<b>双重福利首秀</b><br>前100位 $50 广告金<br>精准回捞高价值卖家'},
+  '202607':{disc:'30-40%+广告金',desc:'<b>三策略并行</b><br>扩受众+广告金模型<br>AdCogs +96.75% MOM'}
+};
+(function(){
+  let h='';
+  MONTHS.forEach(m=>{
+    const t=tacticsMap[m],d=D[m];
+    h+=`<div class="t-step"><div class="t-mo">${d.label}</div><div class="t-disc">${t.disc}</div><div class="t-desc">${t.desc}</div></div>`;
+  });
+  document.getElementById('tacticsTimeline').innerHTML=h;
+})();
+
+document.getElementById('tacticsDetail').innerHTML=[
+  {t:'激励方法论：广告金是第一杠杆',b:'广告金加码人群投放效率 0.034，是折扣费率(0.001)的 <b>29 倍</b>。7 月"扩受众+广告金"模型验证 AdCogs +96.8%。<b>结论：折扣改变的是"价格"，广告金改变的是"获客成本"</b>——后者直击卖家核心痛点。<b>H2 动作：</b>广告金固化为 BAU 月度运营，从 88 席逐步放量。'},
+  {t:'圈选方法论：SLS 履约完整度 + 货值优先',b:'premium 2-4% 是加入意愿"甜点区间"（RR 集中度 37.1%）；<b>pure SLS shop（NonWH + is_pff=0）是服务价值最高的人群</b>——100% 订单走 SLS，贡献最完整。<b>结论：优先圈选 pure SLS 店铺</b>，因为服务只覆盖 SLS 订单，SLS 占比越高对 total premium 贡献越大。<b>H2 动作：</b>圈选时叠加"pure SLS × premium 区间 × 高 adcogs"多维筛选。'},
+  {t:'留存方法论：前 3 个月定生死',b:'FD 44%、RR 72% 的退出集中在加入后 3 个月内，这是"价值验证期"。RR 中位存续仅 48 天。<b>结论：留存干预的价值高于持续拉新</b>——保住一个已加入卖家比拉一个新卖家成本更低。<b>H2 动作：</b>建立 Day 7/14/30/60/90 节点"价值回顾"推送。'},
+  {t:'增长方法论：多策略并行放量',b:'7 月三策略并行（单月折扣+广告金 / 三月折扣 / 激励大会）验证了规模化增长路径，主力策略贡献 82% 增量。<b>结论：单一折扣已到天花板，组合拳才能撬动增量</b>。<b>H2 动作：</b>策略①固化为 BAU、策略②放量测试、策略③保留稀缺感。'}
+].map(i=>`<div class="insight"><b>${i.t}</b><br>${i.b}</div>`).join('');
+
+// ════ 4. PRICE CURVE ════
+// Data from: 价格转化率敏感度曲线.xlsx (42 rows, 202601–202607, 7 months)
+const CURVE_DATA = [
+  {time:202601,product:'ORS-FD',conversion:0.4182,discount:15,market:'MY'},
+  {time:202601,product:'ORS-FD',conversion:0.3357,discount:20,market:'PH'},
+  {time:202601,product:'ORS-FD',conversion:6.6031,discount:15,market:'SG'},
+  {time:202601,product:'ORS-FD',conversion:2.7464,discount:15,market:'VN'},
+  {time:202601,product:'ORS-RR',conversion:0.7503,discount:20,market:'MY'},
+  {time:202601,product:'ORS-RR',conversion:0.8642,discount:20,market:'PH'},
+  {time:202602,product:'ORS-FD',conversion:0.7250,discount:20,market:'MY'},
+  {time:202602,product:'ORS-FD',conversion:0.2960,discount:25,market:'PH'},
+  {time:202602,product:'ORS-FD',conversion:0.4148,discount:20,market:'SG'},
+  {time:202602,product:'ORS-FD',conversion:0.6632,discount:20,market:'VN'},
+  {time:202602,product:'ORS-RR',conversion:0.3831,discount:25,market:'MY'},
+  {time:202602,product:'ORS-RR',conversion:0.3185,discount:25,market:'PH'},
+  {time:202603,product:'ORS-FD',conversion:0.5928,discount:20,market:'MY'},
+  {time:202603,product:'ORS-FD',conversion:0.1731,discount:25,market:'PH'},
+  {time:202603,product:'ORS-FD',conversion:0.4622,discount:20,market:'SG'},
+  {time:202603,product:'ORS-FD',conversion:0.6977,discount:20,market:'VN'},
+  {time:202603,product:'ORS-RR',conversion:0.4607,discount:25,market:'MY'},
+  {time:202603,product:'ORS-RR',conversion:0.2970,discount:25,market:'PH'},
+  {time:202604,product:'ORS-FD',conversion:0.4085,discount:25,market:'MY'},
+  {time:202604,product:'ORS-FD',conversion:0.1905,discount:30,market:'PH'},
+  {time:202604,product:'ORS-FD',conversion:0.2544,discount:25,market:'SG'},
+  {time:202604,product:'ORS-FD',conversion:0.5728,discount:25,market:'VN'},
+  {time:202604,product:'ORS-RR',conversion:0.4534,discount:30,market:'MY'},
+  {time:202604,product:'ORS-RR',conversion:0.1759,discount:30,market:'PH'},
+  {time:202605,product:'ORS-FD',conversion:0.3439,discount:25,market:'MY'},
+  {time:202605,product:'ORS-FD',conversion:0.2682,discount:30,market:'PH'},
+  {time:202605,product:'ORS-FD',conversion:0.2958,discount:25,market:'SG'},
+  {time:202605,product:'ORS-FD',conversion:0.4488,discount:25,market:'VN'},
+  {time:202605,product:'ORS-RR',conversion:0.2359,discount:30,market:'MY'},
+  {time:202605,product:'ORS-RR',conversion:0.2797,discount:30,market:'PH'},
+  {time:202606,product:'ORS-FD',conversion:0.2400,discount:25,market:'MY'},
+  {time:202606,product:'ORS-FD',conversion:0.3300,discount:30,market:'PH'},
+  {time:202606,product:'ORS-FD',conversion:0.6900,discount:25,market:'SG'},
+  {time:202606,product:'ORS-FD',conversion:0.1500,discount:25,market:'VN'},
+  {time:202606,product:'ORS-RR',conversion:0.3900,discount:30,market:'MY'},
+  {time:202606,product:'ORS-RR',conversion:0.3600,discount:30,market:'PH'},
+  {time:202607,product:'ORS-FD',conversion:0.8500,discount:30,market:'MY'},
+  {time:202607,product:'ORS-FD',conversion:0.4900,discount:35,market:'PH'},
+  {time:202607,product:'ORS-FD',conversion:0.3400,discount:30,market:'SG'},
+  {time:202607,product:'ORS-FD',conversion:1.0100,discount:30,market:'VN'},
+  {time:202607,product:'ORS-RR',conversion:0.5900,discount:35,market:'MY'},
+  {time:202607,product:'ORS-RR',conversion:0.4100,discount:35,market:'PH'}
+];
+
+const products=[...new Set(CURVE_DATA.map(d=>d.product))].sort();
+const markets=[...new Set(CURVE_DATA.map(d=>d.market))].sort();
+let selProduct='ORS-FD',selMarket='MY',manualPts=[];
+
+function populateSelectors(){
+  document.getElementById('curveProduct').innerHTML=products.map(o=>`<option value="${o}" ${o===selProduct?'selected':''}>${o}</option>`).join('');
+  document.getElementById('curveMarket').innerHTML=markets.map(o=>`<option value="${o}" ${o===selMarket?'selected':''}>${o}</option>`).join('');
+}
+function getCurvePts(){
+  const wb=CURVE_DATA.filter(d=>d.product===selProduct&&d.market===selMarket).map(d=>({discount:d.discount,conversion:d.conversion,time:d.time}));
+  const man=manualPts.filter(d=>d.product===selProduct&&d.market===selMarket).map(d=>({discount:d.discount,conversion:d.conversion}));
+  return [...wb,...man].sort((a,b)=>a.discount-b.discount);
+}
+function drawCurveChart(){
+  var pts=getCurvePts();
+  var mapped=pts.map(function(p){return {x:p.discount,y:p.conversion,time:p.time};});
+  drawScatterChart('chartCurve', mapped);
+}
+function renderCurve(){ drawCurveChart(); }
+function updateCurveSummary(){
+  const pts=getCurvePts(),timePts=pts.filter(p=>p.time).sort((a,b)=>a.time-b.time);
+  if(pts.length<2){document.getElementById('curveSummary').innerHTML=`<b>${selProduct} / ${selMarket}</b>：当前样本不足，请输入至少 2 组数据。`;return}
+  const low=pts.filter(p=>p.discount<=20),high=pts.filter(p=>p.discount>=25);
+  const lAvg=low.length?(low.reduce((s,p)=>s+p.conversion,0)/low.length):null;
+  const hAvg=high.length?(high.reduce((s,p)=>s+p.conversion,0)/high.length):null;
+  const best=pts.reduce((b,p)=>p.conversion>b.conversion?p:b,pts[0]);
+  const timeStr=timePts.map(p=>`${String(p.time).slice(4,6)}月（${p.discount}%→${p.conversion.toFixed(3)}%）`).join(' · ');
+  const judgment=(lAvg&&hAvg&&hAvg<=lAvg)?'折扣提升后转化率未同步提升，该组合下继续加码折扣的边际收益有限，建议优先优化人群精准度与渠道效率。':'高折扣区间转化率更高，但需关注绝对值是否达到 ROI 目标。';
+  document.getElementById('curveSummary').innerHTML=`<b>${selProduct} / ${selMarket}</b><br>① 时间序列：${timeStr}<br>② 低折扣区间（15–20%）平均转化率：${lAvg?lAvg.toFixed(3):'n/a'}%&emsp;高折扣区间（25–30%）平均转化率：${hAvg?hAvg.toFixed(3):'n/a'}%<br>③ 最优折扣：<b>${best.discount}%</b>，转化率 <b>${best.conversion.toFixed(3)}%</b><br>④ 判断：${judgment}`;
+}
+
+document.getElementById('curveFilterBtn').addEventListener('click',()=>{
+  selProduct=document.getElementById('curveProduct').value;selMarket=document.getElementById('curveMarket').value;
+  populateSelectors();renderCurve();updateCurveSummary();
+});
+document.getElementById('curveForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const d=Number(document.getElementById('discount').value),c=Number(document.getElementById('conversion').value);
+  if(isNaN(d)||isNaN(c))return;
+  manualPts.push({product:selProduct,market:selMarket,discount:d,conversion:c});
+  this.reset();renderCurve();updateCurveSummary();
+});
+
+// -- Optimal discount table --
+function renderOptimalDiscount(){
+  var products=['ORS-FD','ORS-RR'];
+  var markets=['MY','PH','SG','VN'];
+  var html='<table><thead><tr><th>产品</th><th>市场</th><th>样本数</th><th>最优折扣</th><th>最优转化率</th><th>备注</th></tr></thead><tbody>';
+  products.forEach(function(prod){
+    var validMkts = markets.filter(function(mkt){
+      return CURVE_DATA.some(function(d){return d.product===prod && d.market===mkt;});
+    });
+    validMkts.forEach(function(mkt, mi){
+      // 剔除异常值：1月 SG/VN 极小样本的 15% 折扣点（SG仅12家、VN仅14家店）
+      var isOutlier = function(d){
+        return d.product==='ORS-FD' && (d.market==='SG'||d.market==='VN') && d.discount===15 && d.time===202601;
+      };
+      var pts=CURVE_DATA.filter(function(d){return d.product===prod && d.market===mkt && !isOutlier(d);});
+      var best=pts.reduce(function(b,p){return p.conversion>b.conversion?p:b;}, pts[0]);
+      var note='';
+      if(prod==='ORS-FD' && mkt==='SG') note='已剔除1月极小样本异常值(12家店)';
+      if(prod==='ORS-FD' && mkt==='VN') note='已剔除1月极小样本异常值(14家店)';
+      if(best.discount===35) note='35%为7月新档，样本仅1个月';
+      html+='<tr>';
+      if(mi===0) html+='<td rowspan="'+validMkts.length+'" style="vertical-align:middle"><b>'+prod+'</b></td>';
+      html+='<td><b>'+mkt+'</b></td>';
+      html+='<td class="num">'+pts.length+'</td>';
+      html+='<td class="num hi">'+best.discount+'%</td>';
+      html+='<td class="num">'+best.conversion.toFixed(3)+'%</td>';
+      html+='<td style="text-align:left;color:var(--muted)">'+note+'</td>';
+      html+='</tr>';
+    });
+  });
+  html+='</tbody></table>';
+  document.getElementById('tblOptimalDiscount').innerHTML=html;
+}
+renderOptimalDiscount();
+
+// ════ 5. ALL-TIME JOINED SELLER PROFILE ════
+// Data: FD全量加入卖家info_20260804.csv (23,674) + RR全量加入卖家info_20260804.csv (3,996)
+(function(){
+  // -- Core Comparison Table --
+  var h='<table><thead><tr><th>维度</th><th>FD (n=23,674)</th><th>RR (n=3,996)</th><th>差异解读</th></tr></thead><tbody>';
+  [{d:'总加入量',f:'23,674',r:'3,996',n:'FD 体量约为 RR 的 6 倍——FD 覆盖面更广'},
+   {d:'current premium 中位数',f:'1.89%',r:'2.24%',n:'RR 卖家保费更高——RR 卖家本身退货风险更高'},
+   {d:'premium 0-4% 区间占比',f:'75.6%',r:'81.2%',n:'大部分加入卖家在低-中保费区间'},
+   {d:'LT 团队占比',f:'87.2%',r:'86.6%',n:'LT 是绝对主体，FD/RR 比例接近'},
+   {d:'ST 团队占比',f:'8.3%',r:'9.7%',n:'ST 在 RR 中略高——RR 对 ST 更具吸引力'},
+   {d:'UST 团队占比',f:'3.7%',r:'2.8%',n:'UST 整体参与度不高'},
+   {d:'Top 品类',f:'Home&Living (16.3%)',r:'Home&Living (19.6%)',n:'家居品类在 RR 中集中度更高'},
+   {d:'中位店龄',f:'1,145 天 (~3.1年)',r:'990 天 (~2.7年)',n:'FD 加入卖家更成熟，RR 卖家偏年轻'},
+   {d:'4 年+老店占比',f:'34.8%',r:'31.9%',n:'老店在 FD 中更活跃'},
+   {d:'中位 adcogs',f:'$29',r:'$39',n:'RR 加入卖家的广告价值更高'},
+   {d:'LFF+PFF 双标签',f:'14.5%',r:'21.5%',n:'RR 卖家交付风险更高——退货需求更强'},
+   {d:'pure SLS shop 占比',f:'85.0%',r:'77.9%',n:'纯SLS店铺是主体；RR中FBS/3PF占比更高(22.1%)'},
+   {d:'FBS-PFF 占比',f:'7.0%',r:'11.5%',n:'跨境仓+PFF卖家在RR中占比是FD的1.6倍——退货保障刚需'},
+   {d:'3PF-PFF 占比',f:'6.5%',r:'9.3%',n:'第三方仓+PFF同样在RR中over-index'},
+   {d:'Top 市场',f:'MY 30.2%, PH 22.8%',r:'MY 37.8%, PH 35.9%',n:'RR 更集中于 MY+PH(73.7% vs 53.0%)'}
+  ].forEach(function(r){
+    h+='<tr><td><b>'+r.d+'</b></td><td>'+r.f+'</td><td>'+r.r+'</td><td>'+r.n+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('tblFullCompare').innerHTML=h;
+
+  // -- Premium Distribution --
+  var h2='<table><thead><tr><th>Premium 区间</th><th>FD 数量</th><th>FD 占比</th><th>RR 数量</th><th>RR 占比</th><th>解读</th></tr></thead><tbody>';
+  [{rng:'0-1%',f_n:'7,782',f_p:'32.9%',r_n:'468',r_p:'15.1%',n:'FD 在最低保费区间占比最高——"低成本试水"是 FD 主要加入动机'},
+   {rng:'1-2%',f_n:'5,014',f_p:'21.2%',r_n:'902',r_p:'29.0%',n:'RR 在此区间占比最高——中等风险卖家最需要退货保障'},
+   {rng:'2-4%',f_n:'5,092',f_p:'21.5%',r_n:'1,152',r_p:'37.1%',n:'RR 核心区间——2-4% 保费卖家在 RR 中集中度是 FD 的 1.7 倍'},
+   {rng:'4-6%',f_n:'3,260',f_p:'13.8%',r_n:'386',r_p:'12.4%',n:'两者接近——中高保费段加入意愿相当'},
+   {rng:'6%+',f_n:'2,526',f_p:'10.7%',r_n:'197',r_p:'6.3%',n:'FD 高保费段仍有 10% 加入——高成本卖家更愿意为 FD 付费'}
+  ].forEach(function(r){
+    h2+='<tr><td><b>'+r.rng+'</b></td><td class="num">'+r.f_n+'</td><td class="hi">'+r.f_p+'</td><td class="num">'+r.r_n+'</td><td class="hi">'+r.r_p+'</td><td>'+r.n+'</td></tr>';
+  });
+  h2+='</tbody></table>';
+  document.getElementById('tblFullPremium').innerHTML=h2;
+
+  // -- Team x Premium --
+  var h3='<table><thead><tr><th>Team</th><th>0-1%</th><th>1-2%</th><th>2-4%</th><th>4-6%</th><th>6%+</th><th>核心特征</th></tr></thead><tbody>';
+  [{tm:'FD-LT (20,654)',d:['33.9%','21.0%','20.7%','13.9%','10.5%'],n:'LT 卖家最多在极低端——低成本试水心态明显'},
+   {tm:'FD-ST (1,969)',d:['27.0%','25.0%','26.3%','12.3%','9.4%'],n:'ST 分布更均匀——各保费段均有参与，更理性选择'},
+   {tm:'FD-UST (869)',d:['22.9%','17.1%','29.2%','14.5%','16.2%'],n:'UST 在 2-4% 和 6%+ 占比最高——大卖集中在中高保费段'},
+   {tm:'RR-LT (3,460)',d:['11.7%','21.4%','29.2%','10.2%','5.5%'],n:'RR-LT 集中在中段(1-4%)——退货风险适中的 LT 最愿意加入'},
+   {tm:'RR-ST (388)',d:['8.8%','30.2%','26.8%','6.4%','1.0%'],n:'ST 在 1-2% 集中度最高——中等风险+理性管理=RR 目标人群'},
+   {tm:'RR-UST (110)',d:['21.8%','31.8%','22.7%','5.5%','0.9%'],n:'UST 低段占比高但总量小——大卖对 RR 参与度有限'}
+  ].forEach(function(r){
+    h3+='<tr><td><b>'+r.tm+'</b>';
+    r.d.forEach(function(v){h3+='<td>'+v+'</td>';});
+    h3+='<td>'+r.n+'</td></tr>';
+  });
+  h3+='</tbody></table>';
+  document.getElementById('tblFullTeamPrem').innerHTML=h3;
+
+  // -- Category + Market + Age insights --
+  document.getElementById('fullCatMktAge').innerHTML=[
+    {t:'品类维度',b:'<b>Home & Living 是 FD 和 RR 共同的 Top 1 品类</b>（FD 16.3%、RR 19.6%），远超第二名。<br>FD Top 5：H&L → Fashion Acc. → Women Clothes → Mobile&Gadgets → No Category<br>RR Top 5：H&L → Fashion Acc. → Sports → Mobile&Gadgets → Beauty<br><b>Sports & Outdoors 和 Beauty 在 RR 中排名更靠前</b>——这些品类退货率更高，对 RR 需求更强。<br><b>No Category 占 FD 7.1%</b>——大量未分类店铺加入 FD，定向营销的精准度有提升空间。'},
+    {t:'市场维度',b:'FD 市场分布更均衡：MY(30%) → PH(23%) → TH(18%) → VN(14%) → SG(12%)。<br>RR 高度集中在 MY+PH（73.7%），因为 RR 目前仅在这两个市场投放。<br><b>TH 在 FD 中占 18.4%</b>——泰国市场 ORS-FD 需求显著，但暂无 RR 选项。如果后续开放 TH 的 RR，预计会有可观需求。<br>TW 在 FD 中占 1.9%（455 家）——台湾市场虽小但有自然加入流量。'},
+    {t:'店龄维度',b:'<b>FD 以成熟老店为主</b>：中位 3.1 年，34.8% 为 4 年+老店，27.3% 在 2-3 年区间。<br><b>RR 卖家略年轻</b>：中位 2.7 年，6-12 月新店占 9.3%（FD 仅 2.8%）。<br>两个产品均无 6 月以下全新店铺加入——ORS 的门槛天然排除了刚开店还没有 SLS 数据的新店。<br><b>2-3 年区间的店铺在 FD 中占 27.3%</b>——这个店龄段的卖家有足够历史判断服务价值，又未到老店惯性阶段，是营销的重点人群。'},
+    {t:'店铺类型（wh_shop_type × is_pff_shop）',b:'<b>pure SLS shop（纯SLS店铺）= NonWH + is_pff=0</b>：FD 85.0%、RR 77.9%。绝对主体，且<b>100% 订单走 SLS，是服务价值最高的人群</b>——加入后全部订单贡献保费，无本地履约稀释。<br><b>3PF-PFF（第三方仓+部分履约）= 3PF/RecoWH + is_pff=1</b>：FD 6.5%、RR 9.3%。服务价值按 SLS 占比折算。<br><b>FBS-PFF（跨境仓+部分履约）= CBWH + is_pff=1</b>：FD 7.0%、RR 11.5%。同样按 SLS 占比折算。<br><b>启示：pure SLS shop 是服务价值核心基本盘（占85%），3PF-PFF/FBS-PFF 因混有本地履约 SLS 贡献打折。高价值画像聚焦 pure SLS shop + premium 2-4% + 高 adcogs。</b>'}
+  ].map(function(i){return '<div class="insight"><b>'+i.t+'</b><br>'+i.b+'</div>'}).join('');
+
+  // -- Conclusion --
+  document.getElementById('fullConclusion').innerHTML=[
+    {t:'结论 1：加入 FD 的典型卖家——"低成本试水"的 LT 普通卖家',b:'<b>画像：</b>LT 团队、MY/PH 市场、Home & Living 品类、店龄 2-3 年、current premium 0-1%、adcogs $10-50、NonWH、无 LFF/PFF 标签。<br><b>动机：</b>保费极低（中位 1.89%），加入成本几乎为零——"可有可无、试试无妨"的心态驱动加入。<br><b>风险：</b>低成本加入 = 低成本退出。这类卖家粘性可能最低（与模块 7 一致——退出 FD 的卖家 100% 在 0-2% fd_rate）。'},
+    {t:'结论 2：加入 RR 的典型卖家——"确实需要"的中等风险 LT/ST 卖家',b:'<b>画像：</b>LT 或 ST 团队、MY/PH 市场、Home & Living/Sports/Fashion 品类、店龄 1-3 年、current premium 1-4%、adcogs $10-100、LFF+PFF 双标签概率高于平均。<br><b>动机：</b>保费适中（中位 2.24%），退货风险确实存在——LFF+PFF 占比 21.5%（vs FD 14.5%）。加入是理性的风险管理决策。<br><b>启示：</b>RR 的加入动机更硬，粘性应高于 FD（与模块 7 一致——RR 流失率低于 FD）。'},
+    {t:'结论 3：ST 卖家是"高价值少数派"',b:'● ST 仅占 8.3%(FD)和 9.7%(RR)，但分布更均匀——不集中于最低保费段。ST 卖家有专属客户经理，加入决策更理性。<br>● <b>对比：</b>ST 在 RR 中的占比(9.7%) > FD 中的占比(8.3%)，且 RR-ST 中 57% 集中在 1-4% premium——这个区间是 RR 的黄金人群：既有退货需求，又有付费能力。<br>● <b>启示：</b>定向推动 ST 卖家加入 RR（尤其是 1-4% premium 的 ST 卖家），ROI 最高。'},
+    {t:'结论 4：UST 大卖参与度有限，但单店价值最高',b:'● UST 仅占 3.7%(FD)和 2.8%(RR)，但 FD-UST 有 16.2% 在 premium 6%+——大卖的保费成本更高。<br>● <b>推测：</b>大卖可能有自建物流/售后团队、或已通过其他方式覆盖了 FD/RR 需求，对 ORS 服务的边际需求较低。<br>● <b>启示：</b>针对 UST 需要更个性化的 pitch——不能仅靠折扣，应强调 ORS 在降低管理复杂度和提升买家信任方面的价值。'},
+    {t:'结论 5：premium 2-4% 是加入意愿最强的"甜点区间"',b:'● FD 中 21.5%、RR 中 37.1% 的加入者在此区间。<b>RR 在 2-4% 的集中度是 FD 的 1.7 倍</b>——这个保费段的卖家有足够的风险去关心保障，又有足够的成本去在意费率。<br>● <b>0-1% 和 6%+ 是两极：</b>前者保费太低没感觉（FD 32.9%），后者保费太高不划算（FD 10.7% 但很可能流失快）。<br>● <b>启示：</b>premium 2-4% 是加入意愿的甜点区间，应作为新用户获取的重点 target。1-2% 的卖家可以通过 RR 服务向上转化。'},
+    {t:'结论 6：pure SLS shop + premium 2-4% = 最高价值高潜力人群',b:'● <b>按 wh_shop_type × is_pff_shop 分类后：</b>pure SLS shop（NonWH + is_pff=0）在 FD 全量中占 85.0%、RR 77.9%，是绝对主体，且<b>100% 订单走 SLS，对服务贡献最完整</b>。<br>● 3PF-PFF（3PF/RecoWH+is_pff=1）在 RR 中占 9.3%，FBS-PFF（CBWH+is_pff=1）占 11.5%——这两类混有第三方仓/跨境仓的本地履约，SLS 贡献按占比打折。<br>● <b>组合画像：</b>pure SLS shop + premium 2-4% + 高 adcogs 的 LT/ST 卖家，是服务价值最高且加入概率最大的人群。<br>● <b>启示：</b>圈选时优先 pure SLS shop（100% SLS 贡献），再叠加 premium 区间和 adcogs 排序，可找到高价值精准人群。'}
+  ].map(function(i){return '<div class="insight"><b>'+i.t+'</b><br>'+i.b+'</div>'}).join('');
+})();
+
+// ════ 6. H2 STRATEGY ════
+(function(){
+  // -- Strategy Summary (4 themes) --
+  document.getElementById('h2StrategySummary').innerHTML=[
+    {t:'主线① 巩固基本盘',b:'单月折扣+广告金固化为 BAU（每月固定 $5k 预算、88席广告金、各市场最优折扣），三月折扣扩大到同等受众池——<b>稳住7月已验证的增量基盘</b>，把"验证有效"变成"每月确定性产出"。'},
+    {t:'主线② 打通信息差',b:'香港转运仓 pitch、PFF 定向推送、FD→RR 交叉触达——三类动作的本质都是<b>消除卖家信息差</b>：让卖家知道服务覆盖范围扩大了、只对 SLS 承运订单收费、RR 场景的价值，从而把"不知道/误解"的卖家转化为加入者。'},
+    {t:'主线③ 扩大 RR 增量',b:'面向 FD 存量卖家交叉推送 RR + ORS-FD/RR bundle 更优价格——<b>在存量用户上做深做透</b>，提升单店铺服务价值（ARPU）和 RR 渗透率，是货值维度增长的高效路径。'},
+    {t:'主线④ 精准定价 + 留存',b:'高潜卖家（pure SLS + premium 2-4% + 高 adcogs）小范围降价测试验证价格弹性；前 3 个月价值回顾（拨款提醒 + 月度节省报告）降低流失——<b>一边拉新高价值，一边保住已获取</b>。'}
+  ].map(function(i){return '<div class="insight"><b>'+i.t+'</b><br>'+i.b+'</div>'}).join('');
+
+  // -- H2 Strategy Table (from Excel) --
+  var rows = [
+    {cat:'折扣营销',t:'单月折扣+广告金固化为 BAU',a:'每月固定 $5,000 广告金预算（前88席$30），圈选沿用固定人群包（offboard+null，rate≤6%，adcogs≥50），折扣按各市场最优折扣设置：FD MY 30% / PH 35% / SG 25% / VN 30%，RR 统一 20%',d:'7月三策略并行 AdCogs +96.8%；广告金效率是折扣29倍；模块5最优折扣表',p:'P0',e:'稳定增量基盘，货值维度持续增长'},
+    {cat:'折扣营销',t:'扩大三月折扣适用范围',a:'将"连续三月折扣"从7月试点扩展到与单月折扣同等的受众池，锁定90天服务周期，验证长周期折扣对留存率的提升效果',d:'7月三月折扣贡献13%增量(39店/$10.1k)；RR中位存续仅48天、72%在3个月内退出',p:'P0',e:'延长服务周期，降低前3个月流失'},
+    {cat:'内容营销',t:'香港转运仓卖家 pitch',a:'圈定香港转运仓卖家，以产品优化 general announcement 触达卖家；大卖 1v1 pitch',d:'香港转运仓卖家覆盖范围扩大，属高价值卖家；内容营销可消除信息差',p:'P0',e:'告知香港转运仓卖家服务覆盖范围扩大，吸引高价值卖家加入'},
+    {cat:'内容营销',t:'面向 FD 存量卖家推送 RR 场景',a:'向存量 FD 用户交叉推送 RR 场景利益点',d:'RR加入卖家adcogs中位$39高于FD $29；存量卖家对服务已有了解，交叉转化门槛更低',p:'P0',e:'对服务有一定了解的卖家同时 enroll 两个服务场景'},
+    {cat:'内容营销',t:'面向 PFF 卖家推送 ORS 产品',a:'向 PFF 卖家定向内容营销，强调 ORS 能够为 SLS 承运订单兜底',d:'PFF卖家属于高adcogs卖家，且有部分卖家误以为加入后会对所有订单收费——需植入"仅SLS承运订单收取费用"概念',p:'P0',e:'激活高粘性人群需求'},
+    {cat:'价格优化',t:'高潜卖家小范围降价测试',a:'圈选 pure SLS shop（NonWH + is_pff=0）+ premium 2-4% + 高 adcogs 的从未加入服务高价值卖家，进行降价 x% 小范围测试',d:'pure SLS 100%订单走SLS贡献最完整；premium 2-4%是甜点区间；高adcogs对total premium贡献大',p:'P0',e:'验证高价值人群的降价弹性，为定价优化提供依据'},
+    {cat:'产品优化',t:'[TBD] 前3个月留存干预——价值回顾',a:'建立 Day 7/14/30/60/90 节点推送，2种呈现形式：①拨款提醒（"物流+：海外免退服务刚为你拨款$X，服务费已回本"）②月度节省报告（站内信，展示累计节省金额+拨款笔数）',d:'FD 44%、RR 72%的退出集中在加入后3个月内；这是"价值验证期"，卖家在此判断"服务对我有用吗"',p:'P0',e:'降低前3个月流失，保住已获取的adcogs增量'},
+    {cat:'产品优化',t:'ORS-FD + ORS-RR bundle 更优价格',a:'服务首页针对同时勾选两个项目进行产品改造；进入服务首页 popup 提示优惠',d:'RR卖家adcogs高于FD；交叉销售可提升单店铺服务价值(ARPU)；扩大RR增量',p:'P0',e:'提升单店铺服务价值，扩大 RR 增量'}
+  ];
+
+  var h='<table><thead><tr><th style="width:8%">类型</th><th style="width:18%">事项</th><th style="width:38%">行动</th><th style="width:24%">数据依据</th><th style="width:5%">优先级</th><th style="width:7%">预期效果</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    var pColor = r.p==='P0' ? '#dc2626' : (r.p==='P1' ? '#f59e0b' : '#059669');
+    h+='<tr>'+
+      '<td style="text-align:center;color:var(--muted);font-size:12px">'+r.cat+'</td>'+
+      '<td style="text-align:left;font-weight:700">'+r.t+'</td>'+
+      '<td style="text-align:left">'+r.a+'</td>'+
+      '<td style="text-align:left;color:var(--muted);font-size:12px">'+r.d+'</td>'+
+      '<td><b style="color:'+pColor+'">'+r.p+'</b></td>'+
+      '<td style="text-align:left;font-size:12px">'+r.e+'</td>'+
+      '</tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('tblH2Strategy').innerHTML=h;
+})();
+
+// ════ 7. WHITELIST ANALYSIS ════
+var M10 = window.__M10_DATA__ || {};
+
+var M10_MARKETS = ['MY','PH','SG','TH','VN','TW'];
+
+// -- Part 1: market dropdown + charts --
+function renderM10Charts(){
+  var prod = document.getElementById('m10Product').value;
+  var mkt = document.getElementById('m10Market').value;
+  var monthly = M10[prod] ? M10[prod]['monthly'] : {};
+
+  // Collect months for this market
+  var months = {};
+  for(var key in monthly){
+    var parts = key.split('|');
+    if(parts[1] === mkt){
+      months[parts[0]] = monthly[key];
+    }
+  }
+  var sortedMonths = Object.keys(months).sort();
+  var labels = sortedMonths.map(function(m){ return m.slice(0,4)+'/'+m.slice(4,6); });
+  var shops = sortedMonths.map(function(m){ return months[m]['shops']; });
+  var adcogs = sortedMonths.map(function(m){ return months[m]['adcogs']; });
+
+  drawLineChart('chartM10Shops', labels, [{label:'加入店铺数', data:shops, color:COLORS.orange}], '店铺数', false);
+  drawLineChart('chartM10Adcogs', labels, [{label:'加入 adcogs', data:adcogs, color:COLORS.blue}], 'adcogs (USD)', false);
+
+  // Summary
+  var totalShops = 0, totalAdcogs = 0;
+  sortedMonths.forEach(function(m){ totalShops += months[m]['shops']; totalAdcogs += months[m]['adcogs']; });
+  document.getElementById('m10Part1Summary').innerHTML =
+    '<b>'+prod+' / '+mkt+' 市场</b><br>'+
+    '累计加入店铺：<b>'+totalShops.toLocaleString()+'</b> 家<br>'+
+    '累计加入 adcogs：<b>$'+totalAdcogs.toLocaleString(undefined,{maximumFractionDigits:0})+'</b><br>'+
+    '覆盖月份：<b>'+sortedMonths.length+'</b> 个月<br>'+
+    '最早加入：'+ (sortedMonths.length ? (sortedMonths[0].slice(0,4)+'/'+sortedMonths[0].slice(4,6)) : '—');
+}
+
+// -- Part 2: drill-down --
+var M10_DIMS = [
+  {key:'market', label:'① by Market（市场）'},
+  {key:'shop_type', label:'② Shop Type（店铺类型）'},
+  {key:'team', label:'③ gp_account_owner_userrole（团队）'},
+  {key:'rate', label:'④ fd_rate / rr_rate（费率）'}
+];
+
+function renderM10Drill(prod){
+  // Toggle buttons
+  document.getElementById('btnFD').classList.toggle('active', prod==='ORS-FD');
+  document.getElementById('btnRR').classList.toggle('active', prod==='ORS-RR');
+
+  var drill = M10[prod]['drill'];
+  var html = '';
+
+  M10_DIMS.forEach(function(dim){
+    var data = drill[dim.key];
+    html += '<div style="margin-bottom:18px"><h4 style="margin:0 0 8px;font-size:14px">'+dim.label+'</h4>';
+    html += '<div class="tbl-wrap"><table><thead><tr>'+
+      '<th>维度</th><th>白名单店铺</th><th>已加入店铺</th><th>店铺加入率</th>'+
+      '<th>白名单 adcogs</th><th>已加入 adcogs</th><th>adcogs 加入率</th></tr></thead><tbody>';
+
+    // Order by whitelist shops desc
+    var keys = Object.keys(data).sort(function(a,b){ return data[b]['wh_shops'] - data[a]['wh_shops']; });
+    keys.forEach(function(k){
+      var d = data[k];
+      var shopRate = d.wh_shops>0 ? (d.on_shops/d.wh_shops*100) : 0;
+      var adcogsRate = d.wh_adcogs>0 ? (d.on_adcogs/d.wh_adcogs*100) : 0;
+      html += '<tr>'+
+        '<td><b>'+k+'</b></td>'+
+        '<td class="num">'+d.wh_shops.toLocaleString()+'</td>'+
+        '<td class="num hi">'+d.on_shops.toLocaleString()+'</td>'+
+        '<td class="num"><b>'+shopRate.toFixed(1)+'%</b></td>'+
+        '<td class="num">$'+Math.round(d.wh_adcogs).toLocaleString()+'</td>'+
+        '<td class="num hi">$'+Math.round(d.on_adcogs).toLocaleString()+'</td>'+
+        '<td class="num"><b>'+adcogsRate.toFixed(1)+'%</b></td>'+
+        '</tr>';
+    });
+    html += '</tbody></table></div></div>';
+  });
+
+  document.getElementById('m10DrillContent').innerHTML = html;
+}
+
+// -- Part 3: whitelist optimization --
+function renderM10Whitelist(){
+  var fdOpt = M10['ORS-FD']['opt'], rrOpt = M10['ORS-RR']['opt'];
+
+  var html = '<table><thead><tr><th>产品</th><th>异常类型</th><th>白名单中数量</th><th>其中仍"onboard"</th><th>占白名单比例</th><th>建议</th></tr></thead><tbody>';
+
+  var rows = [
+    {p:'ORS-FD', k:'SHOP_DELETE', o:fdOpt['SHOP_DELETE'], tot:M10['ORS-FD']['total_wh']['shops'], note:'已删除店铺应全部剔除'},
+    {p:'ORS-FD', k:'user_status=FROZEN', o:fdOpt['FROZEN'], tot:M10['ORS-FD']['total_wh']['shops'], note:'冻结账户无法交易，adcogs 失真'},
+    {p:'ORS-FD', k:'user_status=BANNED', o:fdOpt['BANNED'], tot:M10['ORS-FD']['total_wh']['shops'], note:'封禁账户应剔除'},
+    {p:'ORS-RR', k:'SHOP_DELETE', o:rrOpt['SHOP_DELETE'], tot:M10['ORS-RR']['total_wh']['shops'], note:'已删除店铺应全部剔除'},
+    {p:'ORS-RR', k:'user_status=FROZEN', o:rrOpt['FROZEN'], tot:M10['ORS-RR']['total_wh']['shops'], note:'冻结账户无法交易'},
+    {p:'ORS-RR', k:'user_status=BANNED', o:rrOpt['BANNED'], tot:M10['ORS-RR']['total_wh']['shops'], note:'无 banned 账户'}
+  ];
+
+  rows.forEach(function(r){
+    if(r.o['shops'] === 0 && r.k.indexOf('BANNED')>=0 && r.p==='ORS-RR'){
+      html += '<tr><td><b>'+r.p+'</b></td><td>'+r.k+'</td><td class="num">0</td><td class="num">0</td><td>0%</td><td>—</td></tr>';
+    } else {
+      var pct = r.tot>0 ? (r.o['shops']/r.tot*100) : 0;
+      html += '<tr><td><b>'+r.p+'</b></td><td>'+r.k+'</td>'+
+        '<td class="num down">'+r.o['shops'].toLocaleString()+'</td>'+
+        '<td class="num hi">'+r.o['on_shops'].toLocaleString()+'</td>'+
+        '<td class="num">'+pct.toFixed(2)+'%</td>'+
+        '<td style="text-align:left">'+r.note+'</td></tr>';
+    }
+  });
+  html += '</tbody></table>';
+  document.getElementById('tblM10Whitelist').innerHTML = html;
+
+  // Insight
+  var fdDel = fdOpt['SHOP_DELETE'], rrDel = rrOpt['SHOP_DELETE'];
+  document.getElementById('m10WhitelistInsight').innerHTML = [
+    {t:'核心发现',b:'<b>ORS-FD 白名单中有 4,515 家 SHOP_DELETE 店铺，其中 4,447 家仍被标记为 onboard（98.5%）</b>——这些店铺已从平台删除，但既留在白名单中、又算作已加入，直接抬高了 adoption rate 的分子。此外还有 4,027 家 FROZEN（冻结）和 88 家 BANNED（封禁）账户。<br>ORS-RR 情况较轻：仅 104 家 SHOP_DELETE、690 家 FROZEN。'},
+    {t:'对 adoption rate 的影响',b:'当前 adoption rate = 已加入 adcogs / 白名单 adcogs。剔除这些失效账户后：<br>• <b>分子修正</b>：FD 的 4,447 家 SHOP_DELETE 仍计为 onboard，贡献了 $3,850 adcogs（约 0.27% 的分子），应从分子中剔除。<br>• <b>分母修正</b>：FD 的 4,515 家 SHOP_DELETE 店铺仍占白名单，其 adcogs 应从分母剔除，使 adoption rate 分母更真实。<br>• <b>净效应</b>：修正后 FD 的 adoption rate（adcogs 维度）会小幅下降，但更准确地反映真实转化水平。'},
+    {t:'建议行动',b:'<b>1. 立即剔除 SHOP_DELETE 店铺</b>——FD 4,515 家、RR 104 家，这类店铺已不存在，无任何保留价值。<br><b>2. FROZEN 账户单独标记</b>——冻结可能是临时状态，建议设置"冻结观察期"而非直接剔除。<br><b>3. BANNED 账户立即剔除</b>——FD 88 家封禁账户无保留意义。<br><b>4. 建立月度白名单清洗机制</b>——每月同步平台店铺状态，自动剔除 SHOP_DELETE/BANNED，FROZEN 进入观察队列。'}
+  ].map(function(i){return '<div class="insight"><b>'+i.t+'</b><br>'+i.b+'</div>'}).join('');
+}
+
+// -- Part 3b: adoption rate calculation table --
+function renderM10AdoptionCalc(){
+  function calc(prod){
+    var tw = M10[prod]['total_wh'];
+    var del = M10[prod]['opt']['SHOP_DELETE'];
+    var curShopRate = tw.on_shops/tw.shops*100;
+    var curAdcogsRate = tw.on_adcogs/tw.adcogs*100;
+    var newShopRate = (tw.on_shops-del.on_shops)/(tw.shops-del.shops)*100;
+    var newAdcogsRate = (tw.on_adcogs-del.on_adcogs)/(tw.adcogs-del.adcogs)*100;
+    return {
+      whShops: tw.shops, onShops: tw.on_shops, delShops: del.shops, delOnShops: del.on_shops,
+      whAdcogs: tw.adcogs, onAdcogs: tw.on_adcogs, delAdcogs: del.adcogs, delOnAdcogs: del.on_adcogs,
+      curShopRate: curShopRate, newShopRate: newShopRate,
+      curAdcogsRate: curAdcogsRate, newAdcogsRate: newAdcogsRate
+    };
+  }
+  var fd = calc('ORS-FD'), rr = calc('ORS-RR');
+
+  function diff(cur, nw){ var d = nw - cur; return (d<0?'↓':'↑')+Math.abs(d).toFixed(2)+'pp'; }
+
+  var html = '<table><thead><tr><th>产品</th><th>维度</th><th>当前白名单</th><th>剔除 SHOP_DELETE 后</th><th>变化</th></tr></thead><tbody>';
+
+  // FD shop dimension
+  html += '<tr><td rowspan="4"><b>ORS-FD</b></td><td>白名单店铺</td><td class="num">'+fd.whShops.toLocaleString()+'</td><td class="num">'+(fd.whShops-fd.delShops).toLocaleString()+'</td><td class="num">-'+(fd.delShops).toLocaleString()+' 家</td></tr>';
+  html += '<tr><td>已加入店铺</td><td class="num">'+fd.onShops.toLocaleString()+'</td><td class="num">'+(fd.onShops-fd.delOnShops).toLocaleString()+'</td><td class="num">-'+(fd.delOnShops).toLocaleString()+' 家</td></tr>';
+  html += '<tr><td><b>店铺维度 adoption</b></td><td class="num hi">'+fd.curShopRate.toFixed(2)+'%</td><td class="num hi">'+fd.newShopRate.toFixed(2)+'%</td><td class="num down">'+diff(fd.curShopRate, fd.newShopRate)+'</td></tr>';
+  html += '<tr><td><b>adcogs 维度 adoption</b></td><td class="num hi">'+fd.curAdcogsRate.toFixed(2)+'%</td><td class="num hi">'+fd.newAdcogsRate.toFixed(2)+'%</td><td class="num down">'+diff(fd.curAdcogsRate, fd.newAdcogsRate)+'</td></tr>';
+
+  // RR shop dimension
+  html += '<tr><td rowspan="4"><b>ORS-RR</b></td><td>白名单店铺</td><td class="num">'+rr.whShops.toLocaleString()+'</td><td class="num">'+(rr.whShops-rr.delShops).toLocaleString()+'</td><td class="num">-'+(rr.delShops).toLocaleString()+' 家</td></tr>';
+  html += '<tr><td>已加入店铺</td><td class="num">'+rr.onShops.toLocaleString()+'</td><td class="num">'+(rr.onShops-rr.delOnShops).toLocaleString()+'</td><td class="num">-'+(rr.delOnShops).toLocaleString()+' 家</td></tr>';
+  html += '<tr><td><b>店铺维度 adoption</b></td><td class="num hi">'+rr.curShopRate.toFixed(2)+'%</td><td class="num hi">'+rr.newShopRate.toFixed(2)+'%</td><td class="num down">'+diff(rr.curShopRate, rr.newShopRate)+'</td></tr>';
+  html += '<tr><td><b>adcogs 维度 adoption</b></td><td class="num hi">'+rr.curAdcogsRate.toFixed(2)+'%</td><td class="num hi">'+rr.newAdcogsRate.toFixed(2)+'%</td><td class="num">'+diff(rr.curAdcogsRate, rr.newAdcogsRate)+'</td></tr>';
+
+  html += '</tbody></table>';
+  document.getElementById('tblM10AdoptionCalc').innerHTML = html;
+}
+
+// -- Init --
+(function(){
+  // Populate market dropdown
+  var sel = document.getElementById('m10Market');
+  sel.innerHTML = M10_MARKETS.map(function(m){ return '<option value="'+m+'">'+m+'</option>'; }).join('');
+  sel.value = 'MY';
+  renderM10Charts();
+  renderM10Drill('ORS-FD');
+  renderM10Whitelist();
+  renderM10AdoptionCalc();
+})();
+
+// ════ INIT ════
+redrawAll();
+showMonthDetail('202607');
+populateSelectors();updateCurveSummary();
+</script>
+</body>
+</html>
