@@ -95,9 +95,9 @@
 
   <!-- ════ Hero ════ -->
   <header class="hero">
-    <div class="badge">ORS-FD & RR · 2026 H1+Jul</div>
+    <div class="badge">ORS-FD & RR · 2026 H1+Aug</div>
     <h1>营销转化与方法论看板</h1>
-    <p class="sub">以提升 <strong>adoption rate</strong> 为核心目标，覆盖 2026 年 1–7 月共 7 次折扣费率营销活动。数据来自 [CNCB] Q1/Q2/Q3 Promotion Outcome Tracker，未经任何编造或推断。</p>
+    <p class="sub">以提升 <strong>adoption rate</strong> 为核心目标，覆盖 2026 年 1–8 月共 8 次折扣费率营销活动。数据来自 [CNCB] Q1/Q2/Q3 Promotion Outcome Tracker，未经任何编造或推断。</p>
   </header>
 
   <!-- ════ 1. 大盘 ════ -->
@@ -270,6 +270,57 @@
     </div>
   </div>
 
+  <!-- ════ Module 8 ════ -->
+  <div class="section">
+    <div class="section-title"><span class="num">8</span>线下 ST/UST 卖家激活激励方案——广告金激励</div>
+    <p class="section-desc">数据源：<code>线下ST&UST卖家pitch.xlsx</code>。第一步按 <b>GGP Account Name（集团）</b> 筛选目标卖家并拆解 ST/UST 团队明细（2,691 集团 → 4,293 商户主体 GP → 132,862 店铺）；第二～四步的激励测算沿用 GP 维度。<b>月均GMV = ADCOGS_P30_120D（日均货值）× 30 天</b>；保费率采用白名单实际分布（FD 中位 1.80% / RR 中位 2.45%）。预算口径：月度转化卖家数 <b>可输入调整</b>（默认 20 家），按达标卖家结构自动分配（入门 63.3% / 成长 26.2% / 旗舰 10.5%）。</p>
+
+    <!-- 动态预算控制 -->
+    <div class="card" style="padding:16px 20px;border-color:#fcd5c0;background:#fff7f2">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <label style="font-weight:700;font-size:15px">月度转化卖家数（家）</label>
+        <input type="number" id="m8Conv" value="20" min="1" max="3283" step="1" oninput="renderM8All()" style="width:120px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:16px;font-weight:700;color:var(--orange);background:#fff">
+        <span style="font-size:13px;color:var(--muted)">调整后「第二步·预算使用」列与「第四步·预算汇总」实时重算。分配规则：按达标卖家结构自动拆分。</span>
+      </div>
+    </div>
+
+    <!-- Part 1 -->
+    <div class="card">
+      <div class="card-header"><h3>第一步：目标卖家筛选——按 GGP Account Name（集团）聚合 ST/UST 未加入卖家</h3></div>
+      <div id="m8Overview"></div>
+      <div style="margin-top:18px;padding-top:16px;border-top:1px dashed var(--border)">
+        <div style="font-size:14px;font-weight:700;color:#1a1f36;margin-bottom:10px">ST/UST 团队 breakdown 明细（按 GP Account Owner Userrole Name）</div>
+        <div class="tbl-wrap" id="tblM8Breakdown"></div>
+      </div>
+    </div>
+
+    <!-- Part 2 -->
+    <div class="card">
+      <div class="card-header"><h3>第二步：月均GMV 分层——三档 + 首次加入奖励（开户礼）</h3></div>
+      <div class="tbl-wrap"><table id="tblM8Tier"></table></div>
+      <div class="ch-wrap" style="height:220px;margin-top:16px"><canvas id="chartM8Tier"></canvas></div>
+    </div>
+
+    <!-- Part 3 -->
+    <div class="card">
+      <div class="card-header"><h3>第三步：服务费测算 + 首月服务费阶梯激励（使用礼）</h3></div>
+      <div class="insight" id="m8FeeInsight"></div>
+      <div class="tbl-wrap" id="tblM8Ladder" style="margin-top:14px"></div>
+    </div>
+
+    <!-- Part 4 -->
+    <div class="card">
+      <div class="card-header"><h3>第四步：月度预算汇总（预算上限 $10,000 – 20,000）</h3></div>
+      <div class="tbl-wrap" id="tblM8Budget"></div>
+    </div>
+
+    <!-- Part 5 -->
+    <div class="card">
+      <div class="card-header"><h3>结论与建议</h3></div>
+      <div class="insight-row" id="m8Conclusion"></div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ════ DATA ════ -->
@@ -284,7 +335,7 @@
 
 
 // ── Module 10 whitelist data (from 3 whitelist CSVs) ──
-window.__M10_DATA__ = {"ORS-FD":{"monthly":{"202607|PH":{"shops":98,"adcogs":13857.92419},"202406|PH":{"shops":1905,"adcogs":59994.47517999996},"202407|PH":{"shops":429,"adcogs":8408.363900000004},"202501|PH":{"shops":256,"adcogs":5210.477659999998},"202412|PH":{"shops":743,"adcogs":28667.477279999992},"202504|PH":{"shops":75,"adcogs":2274.5593700000004},"202411|PH":{"shops":301,"adcogs":13791.026360000002},"202408|PH":{"shops":413,"adcogs":11704.338830000002},"202409|PH":{"shops":325,"adcogs":13509.55664},"202606|PH":{"shops":106,"adcogs":33988.17923999999},"202410|PH":{"shops":254,"adcogs":11148.510430000002},"202507|PH":{"shops":55,"adcogs":5803.6240800000005},"202601|PH":{"shops":99,"adcogs":10839.23376},"202608|PH":{"shops":59,"adcogs":8071.04141},"202506|PH":{"shops":61,"adcogs":3767.2861800000005},"202511|PH":{"shops":100,"adcogs":11173.615340000004},"202605|PH":{"shops":74,"adcogs":10028.24925},"202405|PH":{"shops":16,"adcogs":716.96269},"202510|PH":{"shops":132,"adcogs":10833.436790000007},"202502|PH":{"shops":157,"adcogs":41953.58375},"202503|PH":{"shops":225,"adcogs":6112.106249999997},"202505|PH":{"shops":41,"adcogs":3926.03475},"202604|PH":{"shops":113,"adcogs":10167.497690000002},"202602|PH":{"shops":75,"adcogs":7158.14599},"202512|PH":{"shops":62,"adcogs":6038.864380000001},"202508|PH":{"shops":106,"adcogs":12578.727610000002},"202603|PH":{"shops":114,"adcogs":9809.03627},"202412|MY":{"shops":903,"adcogs":23513.345899999997},"202406|MY":{"shops":2477,"adcogs":87349.23388999999},"202411|MY":{"shops":383,"adcogs":11398.615370000001},"202608|MY":{"shops":70,"adcogs":5674.8956499999995},"202407|MY":{"shops":505,"adcogs":26853.818210000016},"202603|MY":{"shops":224,"adcogs":19545.72189},"202604|MY":{"shops":149,"adcogs":12630.945219999998},"202408|MY":{"shops":534,"adcogs":12399.803230000001},"202512|MY":{"shops":108,"adcogs":7132.157579999997},"202606|MY":{"shops":186,"adcogs":12301.841229999995},"202501|MY":{"shops":397,"adcogs":8179.00052},"202607|MY":{"shops":149,"adcogs":15976.86656},"202410|MY":{"shops":372,"adcogs":9510.735199999994},"202502|MY":{"shops":192,"adcogs":29400.29936999999},"202503|MY":{"shops":351,"adcogs":13726.643759999997},"202511|MY":{"shops":140,"adcogs":9350.722549999999},"202510|MY":{"shops":158,"adcogs":13378.598520000007},"202504|MY":{"shops":50,"adcogs":1648.6057199999998},"202601|MY":{"shops":152,"adcogs":11047.942729999997},"202509|MY":{"shops":156,"adcogs":10658.286520000001},"202505|MY":{"shops":52,"adcogs":4005.6163299999994},"202409|MY":{"shops":484,"adcogs":15485.035849999997},"202508|MY":{"shops":142,"adcogs":16610.745539999996},"202507|MY":{"shops":60,"adcogs":3321.8318400000003},"202605|MY":{"shops":119,"adcogs":6674.55751},"202506|MY":{"shops":64,"adcogs":3414.9170000000004},"202602|MY":{"shops":109,"adcogs":5131.825690000001},"202509|PH":{"shops":108,"adcogs":7577.68362},"202405|MY":{"shops":6,"adcogs":101.65556},"202606|SG":{"shops":83,"adcogs":4625.94505},"202503|SG":{"shops":1233,"adcogs":36922.29347999999},"202512|SG":{"shops":59,"adcogs":3174.80126},"202511|SG":{"shops":92,"adcogs":9195.04229},"202607|SG":{"shops":80,"adcogs":10943.05841},"202507|SG":{"shops":189,"adcogs":5332.664089999998},"202506|SG":{"shops":173,"adcogs":3914.1012900000005},"202505|SG":{"shops":204,"adcogs":4388.414170000001},"202504|SG":{"shops":165,"adcogs":4591.811449999999},"202603|SG":{"shops":99,"adcogs":5746.78002},"202510|SG":{"shops":119,"adcogs":7906.620560000001},"202605|SG":{"shops":70,"adcogs":4375.60216},"202508|SG":{"shops":427,"adcogs":18235.13374000001},"202509|SG":{"shops":74,"adcogs":7256.257249999999},"202601|SG":{"shops":82,"adcogs":4464.536399999998},"202602|SG":{"shops":56,"adcogs":3283.3854300000003},"202604|SG":{"shops":80,"adcogs":4936.157700000001},"202502|VN":{"shops":249,"adcogs":11120.538379999993},"202412|VN":{"shops":1349,"adcogs":32521.97046999996},"202501|VN":{"shops":318,"adcogs":4709.609260000001},"202503|VN":{"shops":453,"adcogs":8475.310159999995},"202607|VN":{"shops":127,"adcogs":13948.906409999996},"202601|VN":{"shops":101,"adcogs":7858.632039999999},"202509|VN":{"shops":115,"adcogs":7700.936209999999},"202505|VN":{"shops":62,"adcogs":1661.40221},"202504|VN":{"shops":168,"adcogs":2449.2440599999995},"202510|VN":{"shops":129,"adcogs":6749.707629999997},"202506|VN":{"shops":61,"adcogs":2487.5756899999997},"202608|VN":{"shops":60,"adcogs":6068.31807},"202606|VN":{"shops":132,"adcogs":7339.332679999996},"202512|VN":{"shops":80,"adcogs":5727.288910000001},"202605|VN":{"shops":78,"adcogs":14049.86973},"202511|VN":{"shops":93,"adcogs":6874.735960000001},"202603|VN":{"shops":109,"adcogs":10517.928679999992},"202505|TH":{"shops":58,"adcogs":3942.3838200000005},"202501|TH":{"shops":358,"adcogs":12584.367540000005},"202601|TH":{"shops":132,"adcogs":15177.482419999997},"202502|TH":{"shops":278,"adcogs":21933.0159},"202412|TH":{"shops":1693,"adcogs":73605.24389999999},"202503|TH":{"shops":528,"adcogs":19879.435040000004},"202604|TH":{"shops":144,"adcogs":13546.036390000005},"202606|TH":{"shops":293,"adcogs":21553.478180000002},"202510|TH":{"shops":162,"adcogs":11634.211920000002},"202511|TH":{"shops":128,"adcogs":14339.670260000004},"202608|TH":{"shops":66,"adcogs":4538.88521},"202607|TH":{"shops":107,"adcogs":12623.178910000002},"202508|TH":{"shops":173,"adcogs":16418.039119999998},"202509|TH":{"shops":115,"adcogs":11630.836679999995},"202512|TH":{"shops":123,"adcogs":11444.40408},"202603|TH":{"shops":172,"adcogs":16988.85606000001},"202507|TH":{"shops":70,"adcogs":4746.80177},"202602|TH":{"shops":111,"adcogs":6258.022190000001},"202605|TH":{"shops":138,"adcogs":16823.06017},"202506|TH":{"shops":80,"adcogs":7010.793500000001},"202604|VN":{"shops":86,"adcogs":6429.2744699999985},"202508|VN":{"shops":109,"adcogs":7863.805399999997},"202507|VN":{"shops":56,"adcogs":2629.567109999999},"202504|TH":{"shops":88,"adcogs":6063.848180000002},"202608|SG":{"shops":24,"adcogs":1383.86218},"202602|VN":{"shops":74,"adcogs":5462.030409999999},"202501|SG":{"shops":2,"adcogs":0.96828}},"drill":{"market":{"PH":{"wh_shops":26735,"wh_adcogs":4625908.45395001,"on_shops":6502,"on_adcogs":369110.0188900007},"MY":{"wh_shops":28264,"wh_adcogs":2720850.090939995,"on_shops":8693,"on_adcogs":396498.9339600017},"SG":{"wh_shops":14199,"wh_adcogs":1147311.0488800013,"on_shops":3311,"on_adcogs":140677.4352099998},"VN":{"wh_shops":18948,"wh_adcogs":2160774.3855899842,"on_shops":4010,"on_adcogs":172652.34968000016},"TH":{"wh_shops":23337,"wh_adcogs":3087007.085040001,"on_shops":5018,"on_adcogs":323094.7637899998}},"shop_type":{"pure SLS shop":{"wh_shops":88816,"wh_adcogs":7054987.5997500075,"on_shops":23789,"on_adcogs":813687.6094000026},"3PF-PFF":{"wh_shops":12965,"wh_adcogs":3843627.292099999,"on_shops":1684,"on_adcogs":301785.1746599999},"FBS-PFF":{"wh_shops":7866,"wh_adcogs":2439079.140069996,"on_shops":1696,"on_adcogs":247108.07578999954},"Other":{"wh_shops":1836,"wh_adcogs":404157.03248000005,"on_shops":365,"on_adcogs":39452.64167999998}},"team":{"LT":{"wh_shops":75770,"wh_adcogs":4854408.938720001,"on_shops":22874,"on_adcogs":825320.7956000019},"UST":{"wh_shops":15665,"wh_adcogs":1240945.1601500046,"on_shops":868,"on_adcogs":39114.368679999985},"ST":{"wh_shops":16886,"wh_adcogs":7030156.43869001,"on_shops":1888,"on_adcogs":522845.7008600005},"Other":{"wh_shops":3162,"wh_adcogs":616340.5268400003,"on_shops":1904,"on_adcogs":14752.636389999989}},"rate":{"0-2%":{"wh_shops":20635,"wh_adcogs":2503419.687579982,"on_shops":13809,"on_adcogs":1275360.6878700056},"2-4%":{"wh_shops":667,"wh_adcogs":47299.91803999999,"on_shops":331,"on_adcogs":22218.218520000002},"4-6%":{"wh_shops":205,"wh_adcogs":9348.550500000001,"on_shops":109,"on_adcogs":4523.225819999999},"6-10%":{"wh_shops":173,"wh_adcogs":6120.270980000006,"on_shops":96,"on_adcogs":3188.44869},"10%+":{"wh_shops":125,"wh_adcogs":3207.891610000001,"on_shops":86,"on_adcogs":2184.5663299999987}}},"opt":{"SHOP_DELETE":{"shops":4515,"adcogs":6908.780169999999,"on_shops":4447,"on_adcogs":3849.93117},"FROZEN":{"shops":4027,"adcogs":98574.58154999996,"on_shops":3223,"on_adcogs":33958.17806999999},"BANNED":{"shops":88,"adcogs":1096.49062,"on_shops":85,"on_adcogs":295.44128}},"total_wh":{"shops":111483,"adcogs":13741851.064399818,"on_shops":27534,"on_adcogs":1402033.5015300023}},"ORS-RR":{"monthly":{"202511|PH":{"shops":334,"adcogs":27084.434810000006},"202606|PH":{"shops":152,"adcogs":18485.862980000005},"202601|PH":{"shops":186,"adcogs":24924.90149999999},"202605|PH":{"shops":71,"adcogs":31222.59079},"202602|PH":{"shops":115,"adcogs":11914.831850000004},"202604|PH":{"shops":151,"adcogs":10321.960469999995},"202607|VN":{"shops":113,"adcogs":7095.705820000001},"202606|VN":{"shops":368,"adcogs":25410.212509999998},"202608|VN":{"shops":66,"adcogs":4409.61389},"202606|TH":{"shops":408,"adcogs":47603.20069},"202607|TH":{"shops":106,"adcogs":12111.37677},"202607|PH":{"shops":121,"adcogs":17146.213799999998},"202512|PH":{"shops":110,"adcogs":15459.780670000004},"202510|PH":{"shops":28,"adcogs":4774.72724},"202608|TH":{"shops":86,"adcogs":9498.680250000001},"202608|MY":{"shops":68,"adcogs":7412.798040000001},"202605|MY":{"shops":84,"adcogs":3681.6164999999996},"202607|MY":{"shops":109,"adcogs":12981.547190000001},"202606|MY":{"shops":181,"adcogs":12313.450109999994},"202603|MY":{"shops":173,"adcogs":12369.601790000002},"202511|MY":{"shops":365,"adcogs":23323.137650000008},"202601|MY":{"shops":191,"adcogs":17764.681740000004},"202604|MY":{"shops":176,"adcogs":14011.850120000003},"202512|MY":{"shops":95,"adcogs":6356.938900000003},"202603|PH":{"shops":146,"adcogs":13428.26713},"202602|MY":{"shops":106,"adcogs":6117.706720000005},"202608|PH":{"shops":55,"adcogs":8355.346119999997},"202510|MY":{"shops":24,"adcogs":5937.50538},"202605|TH":{"shops":1,"adcogs":0.0}},"drill":{"market":{"PH":{"wh_shops":22448,"wh_adcogs":4475174.809269977,"on_shops":1469,"on_adcogs":183118.9173599999},"VN":{"wh_shops":15358,"wh_adcogs":1937738.2583700004,"on_shops":547,"on_adcogs":36915.53222000001},"TH":{"wh_shops":18885,"wh_adcogs":2893537.9263799977,"on_shops":601,"on_adcogs":69213.25770999996},"MY":{"wh_shops":21987,"wh_adcogs":2540664.8292700197,"on_shops":1572,"on_adcogs":122270.8341399998}},"shop_type":{"FBS-PFF":{"wh_shops":6107,"wh_adcogs":2129248.819070003,"on_shops":477,"on_adcogs":87113.18911999994},"pure SLS shop":{"wh_shops":60031,"wh_adcogs":5795425.663950027,"on_shops":3273,"on_adcogs":247062.37515000033},"3PF-PFF":{"wh_shops":11004,"wh_adcogs":3574171.752580007,"on_shops":379,"on_adcogs":66606.71969000003},"Other":{"wh_shops":1536,"wh_adcogs":348269.5876899997,"on_shops":60,"on_adcogs":10736.25747}},"team":{"LT":{"wh_shops":50882,"wh_adcogs":3862570.3018899546,"on_shops":3620,"on_adcogs":266125.67672000045},"ST":{"wh_shops":13829,"wh_adcogs":6402778.572879989,"on_shops":400,"on_adcogs":133881.17587999988},"UST":{"wh_shops":13011,"wh_adcogs":1077493.4394200027,"on_shops":110,"on_adcogs":6436.395320000001},"Other":{"wh_shops":956,"wh_adcogs":504273.5091000009,"on_shops":59,"on_adcogs":5075.293510000001}},"rate":{"0-2%":{"wh_shops":893,"wh_adcogs":272332.7100800002,"on_shops":661,"on_adcogs":189384.95765},"10%+":{"wh_shops":39,"wh_adcogs":1038.4386499999998,"on_shops":36,"on_adcogs":961.1074},"2-4%":{"wh_shops":171,"wh_adcogs":12908.65513,"on_shops":137,"on_adcogs":9590.835649999999},"4-6%":{"wh_shops":59,"wh_adcogs":2647.21213,"on_shops":46,"on_adcogs":1959.0746900000001},"6-10%":{"wh_shops":36,"wh_adcogs":1921.1562700000004,"on_shops":26,"on_adcogs":1300.1131500000001}}},"opt":{"SHOP_DELETE":{"shops":104,"adcogs":2863.015189999999,"on_shops":52,"on_adcogs":378.05697},"FROZEN":{"shops":690,"adcogs":46561.55890000001,"on_shops":117,"on_adcogs":3377.1557},"BANNED":{"shops":0,"adcogs":0.0,"on_shops":0,"on_adcogs":0.0}},"total_wh":{"shops":78678,"adcogs":11847115.823289922,"on_shops":4189,"on_adcogs":411518.54143000016}}};
+window.__M10_DATA__ = {"ORS-FD":{"monthly":{"202607|PH":{"shops":98,"adcogs":13857.92419},"202406|PH":{"shops":1905,"adcogs":59994.47517999996},"202407|PH":{"shops":429,"adcogs":8408.363900000004},"202501|PH":{"shops":256,"adcogs":5210.477659999998},"202412|PH":{"shops":743,"adcogs":28667.477279999992},"202504|PH":{"shops":75,"adcogs":2274.5593700000004},"202411|PH":{"shops":301,"adcogs":13791.026360000002},"202408|PH":{"shops":413,"adcogs":11704.338830000002},"202409|PH":{"shops":325,"adcogs":13509.55664},"202606|PH":{"shops":106,"adcogs":33988.17923999999},"202410|PH":{"shops":254,"adcogs":11148.510430000002},"202507|PH":{"shops":55,"adcogs":5803.6240800000005},"202601|PH":{"shops":99,"adcogs":10839.23376},"202608|PH":{"shops":59,"adcogs":8071.04141},"202506|PH":{"shops":61,"adcogs":3767.2861800000005},"202511|PH":{"shops":100,"adcogs":11173.615340000004},"202605|PH":{"shops":74,"adcogs":10028.24925},"202405|PH":{"shops":16,"adcogs":716.96269},"202510|PH":{"shops":132,"adcogs":10833.436790000007},"202502|PH":{"shops":157,"adcogs":41953.58375},"202503|PH":{"shops":225,"adcogs":6112.106249999997},"202505|PH":{"shops":41,"adcogs":3926.03475},"202604|PH":{"shops":113,"adcogs":10167.497690000002},"202602|PH":{"shops":75,"adcogs":7158.14599},"202512|PH":{"shops":62,"adcogs":6038.864380000001},"202508|PH":{"shops":106,"adcogs":12578.727610000002},"202603|PH":{"shops":114,"adcogs":9809.03627},"202412|MY":{"shops":903,"adcogs":23513.345899999997},"202406|MY":{"shops":2477,"adcogs":87349.23388999999},"202411|MY":{"shops":383,"adcogs":11398.615370000001},"202608|MY":{"shops":70,"adcogs":5674.8956499999995},"202407|MY":{"shops":505,"adcogs":26853.818210000016},"202603|MY":{"shops":224,"adcogs":19545.72189},"202604|MY":{"shops":149,"adcogs":12630.945219999998},"202408|MY":{"shops":534,"adcogs":12399.803230000001},"202512|MY":{"shops":108,"adcogs":7132.157579999997},"202606|MY":{"shops":186,"adcogs":12301.841229999995},"202501|MY":{"shops":397,"adcogs":8179.00052},"202607|MY":{"shops":149,"adcogs":15976.86656},"202410|MY":{"shops":372,"adcogs":9510.735199999994},"202502|MY":{"shops":192,"adcogs":29400.29936999999},"202503|MY":{"shops":351,"adcogs":13726.643759999997},"202511|MY":{"shops":140,"adcogs":9350.722549999999},"202510|MY":{"shops":158,"adcogs":13378.598520000007},"202504|MY":{"shops":50,"adcogs":1648.6057199999998},"202601|MY":{"shops":152,"adcogs":11047.942729999997},"202509|MY":{"shops":156,"adcogs":10658.286520000001},"202505|MY":{"shops":52,"adcogs":4005.6163299999994},"202409|MY":{"shops":484,"adcogs":15485.035849999997},"202508|MY":{"shops":142,"adcogs":16610.745539999996},"202507|MY":{"shops":60,"adcogs":3321.8318400000003},"202605|MY":{"shops":119,"adcogs":6674.55751},"202506|MY":{"shops":64,"adcogs":3414.9170000000004},"202602|MY":{"shops":109,"adcogs":5131.825690000001},"202509|PH":{"shops":108,"adcogs":7577.68362},"202405|MY":{"shops":6,"adcogs":101.65556},"202606|SG":{"shops":83,"adcogs":4625.94505},"202503|SG":{"shops":1233,"adcogs":36922.29347999999},"202512|SG":{"shops":59,"adcogs":3174.80126},"202511|SG":{"shops":92,"adcogs":9195.04229},"202607|SG":{"shops":80,"adcogs":10943.05841},"202507|SG":{"shops":189,"adcogs":5332.664089999998},"202506|SG":{"shops":173,"adcogs":3914.1012900000005},"202505|SG":{"shops":204,"adcogs":4388.414170000001},"202504|SG":{"shops":165,"adcogs":4591.811449999999},"202603|SG":{"shops":99,"adcogs":5746.78002},"202510|SG":{"shops":119,"adcogs":7906.620560000001},"202605|SG":{"shops":70,"adcogs":4375.60216},"202508|SG":{"shops":427,"adcogs":18235.13374000001},"202509|SG":{"shops":74,"adcogs":7256.257249999999},"202601|SG":{"shops":82,"adcogs":4464.536399999998},"202602|SG":{"shops":56,"adcogs":3283.3854300000003},"202604|SG":{"shops":80,"adcogs":4936.157700000001},"202502|VN":{"shops":249,"adcogs":11120.538379999993},"202412|VN":{"shops":1349,"adcogs":32521.97046999996},"202501|VN":{"shops":318,"adcogs":4709.609260000001},"202503|VN":{"shops":453,"adcogs":8475.310159999995},"202607|VN":{"shops":127,"adcogs":13948.906409999996},"202601|VN":{"shops":101,"adcogs":7858.632039999999},"202509|VN":{"shops":115,"adcogs":7700.936209999999},"202505|VN":{"shops":62,"adcogs":1661.40221},"202504|VN":{"shops":168,"adcogs":2449.2440599999995},"202510|VN":{"shops":129,"adcogs":6749.707629999997},"202506|VN":{"shops":61,"adcogs":2487.5756899999997},"202608|VN":{"shops":60,"adcogs":6068.31807},"202606|VN":{"shops":132,"adcogs":7339.332679999996},"202512|VN":{"shops":80,"adcogs":5727.288910000001},"202605|VN":{"shops":78,"adcogs":14049.86973},"202511|VN":{"shops":93,"adcogs":6874.735960000001},"202603|VN":{"shops":109,"adcogs":10517.928679999992},"202505|TH":{"shops":58,"adcogs":3942.3838200000005},"202501|TH":{"shops":358,"adcogs":12584.367540000005},"202601|TH":{"shops":132,"adcogs":15177.482419999997},"202502|TH":{"shops":278,"adcogs":21933.0159},"202412|TH":{"shops":1693,"adcogs":73605.24389999999},"202503|TH":{"shops":528,"adcogs":19879.435040000004},"202604|TH":{"shops":144,"adcogs":13546.036390000005},"202606|TH":{"shops":293,"adcogs":21553.478180000002},"202510|TH":{"shops":162,"adcogs":11634.211920000002},"202511|TH":{"shops":128,"adcogs":14339.670260000004},"202608|TH":{"shops":66,"adcogs":4538.88521},"202607|TH":{"shops":107,"adcogs":12623.178910000002},"202508|TH":{"shops":173,"adcogs":16418.039119999998},"202509|TH":{"shops":115,"adcogs":11630.836679999995},"202512|TH":{"shops":123,"adcogs":11444.40408},"202603|TH":{"shops":172,"adcogs":16988.85606000001},"202507|TH":{"shops":70,"adcogs":4746.80177},"202602|TH":{"shops":111,"adcogs":6258.022190000001},"202605|TH":{"shops":138,"adcogs":16823.06017},"202506|TH":{"shops":80,"adcogs":7010.793500000001},"202604|VN":{"shops":86,"adcogs":6429.2744699999985},"202508|VN":{"shops":109,"adcogs":7863.805399999997},"202507|VN":{"shops":56,"adcogs":2629.567109999999},"202504|TH":{"shops":88,"adcogs":6063.848180000002},"202608|SG":{"shops":24,"adcogs":1383.86218},"202602|VN":{"shops":74,"adcogs":5462.030409999999},"202501|SG":{"shops":2,"adcogs":0.96828}},"drill":{"market":{"PH":{"wh_shops":26735,"wh_adcogs":4625908.45395001,"on_shops":6502,"on_adcogs":369110.0188900007},"MY":{"wh_shops":28264,"wh_adcogs":2720850.090939995,"on_shops":8693,"on_adcogs":396498.9339600017},"SG":{"wh_shops":14199,"wh_adcogs":1147311.0488800013,"on_shops":3311,"on_adcogs":140677.4352099998},"VN":{"wh_shops":18948,"wh_adcogs":2160774.3855899842,"on_shops":4010,"on_adcogs":172652.34968000016},"TH":{"wh_shops":23337,"wh_adcogs":3087007.085040001,"on_shops":5018,"on_adcogs":323094.7637899998}},"shop_type":{"pure SLS shop":{"wh_shops":88816,"wh_adcogs":7054987.5997500075,"on_shops":23789,"on_adcogs":813687.6094000026},"3PF-PFF":{"wh_shops":12965,"wh_adcogs":3843627.292099999,"on_shops":1684,"on_adcogs":301785.1746599999},"FBS-PFF":{"wh_shops":7866,"wh_adcogs":2439079.140069996,"on_shops":1696,"on_adcogs":247108.07578999954},"Other":{"wh_shops":1836,"wh_adcogs":404157.03248000005,"on_shops":365,"on_adcogs":39452.64167999998}},"team":{"LT":{"wh_shops":75770,"wh_adcogs":4854408.94,"on_shops":22874,"on_adcogs":825320.80},"ST":{"wh_shops":18032,"wh_adcogs":7344281.45,"on_shops":1978,"on_adcogs":543843.54},"UST":{"wh_shops":14516,"wh_adcogs":924402.23,"on_shops":777,"on_adcogs":15882.80},"Other":{"wh_shops":3165,"wh_adcogs":618758.45,"on_shops":1905,"on_adcogs":16986.37}},"rate":{"0-2%":{"wh_shops":20635,"wh_adcogs":2503419.687579982,"on_shops":13809,"on_adcogs":1275360.6878700056},"2-4%":{"wh_shops":667,"wh_adcogs":47299.91803999999,"on_shops":331,"on_adcogs":22218.218520000002},"4-6%":{"wh_shops":205,"wh_adcogs":9348.550500000001,"on_shops":109,"on_adcogs":4523.225819999999},"6-10%":{"wh_shops":173,"wh_adcogs":6120.270980000006,"on_shops":96,"on_adcogs":3188.44869},"10%+":{"wh_shops":125,"wh_adcogs":3207.891610000001,"on_shops":86,"on_adcogs":2184.5663299999987}}},"opt":{"SHOP_DELETE":{"shops":4515,"adcogs":6908.780169999999,"on_shops":4447,"on_adcogs":3849.93117},"FROZEN":{"shops":4027,"adcogs":98574.58154999996,"on_shops":3223,"on_adcogs":33958.17806999999},"BANNED":{"shops":88,"adcogs":1096.49062,"on_shops":85,"on_adcogs":295.44128}},"total_wh":{"shops":111483,"adcogs":13741851.064399818,"on_shops":27534,"on_adcogs":1402033.5015300023}},"ORS-RR":{"monthly":{"202511|PH":{"shops":334,"adcogs":27084.434810000006},"202606|PH":{"shops":152,"adcogs":18485.862980000005},"202601|PH":{"shops":186,"adcogs":24924.90149999999},"202605|PH":{"shops":71,"adcogs":31222.59079},"202602|PH":{"shops":115,"adcogs":11914.831850000004},"202604|PH":{"shops":151,"adcogs":10321.960469999995},"202607|VN":{"shops":113,"adcogs":7095.705820000001},"202606|VN":{"shops":368,"adcogs":25410.212509999998},"202608|VN":{"shops":66,"adcogs":4409.61389},"202606|TH":{"shops":408,"adcogs":47603.20069},"202607|TH":{"shops":106,"adcogs":12111.37677},"202607|PH":{"shops":121,"adcogs":17146.213799999998},"202512|PH":{"shops":110,"adcogs":15459.780670000004},"202510|PH":{"shops":28,"adcogs":4774.72724},"202608|TH":{"shops":86,"adcogs":9498.680250000001},"202608|MY":{"shops":68,"adcogs":7412.798040000001},"202605|MY":{"shops":84,"adcogs":3681.6164999999996},"202607|MY":{"shops":109,"adcogs":12981.547190000001},"202606|MY":{"shops":181,"adcogs":12313.450109999994},"202603|MY":{"shops":173,"adcogs":12369.601790000002},"202511|MY":{"shops":365,"adcogs":23323.137650000008},"202601|MY":{"shops":191,"adcogs":17764.681740000004},"202604|MY":{"shops":176,"adcogs":14011.850120000003},"202512|MY":{"shops":95,"adcogs":6356.938900000003},"202603|PH":{"shops":146,"adcogs":13428.26713},"202602|MY":{"shops":106,"adcogs":6117.706720000005},"202608|PH":{"shops":55,"adcogs":8355.346119999997},"202510|MY":{"shops":24,"adcogs":5937.50538},"202605|TH":{"shops":1,"adcogs":0.0}},"drill":{"market":{"PH":{"wh_shops":22448,"wh_adcogs":4475174.809269977,"on_shops":1469,"on_adcogs":183118.9173599999},"VN":{"wh_shops":15358,"wh_adcogs":1937738.2583700004,"on_shops":547,"on_adcogs":36915.53222000001},"TH":{"wh_shops":18885,"wh_adcogs":2893537.9263799977,"on_shops":601,"on_adcogs":69213.25770999996},"MY":{"wh_shops":21987,"wh_adcogs":2540664.8292700197,"on_shops":1572,"on_adcogs":122270.8341399998}},"shop_type":{"FBS-PFF":{"wh_shops":6107,"wh_adcogs":2129248.819070003,"on_shops":477,"on_adcogs":87113.18911999994},"pure SLS shop":{"wh_shops":60031,"wh_adcogs":5795425.663950027,"on_shops":3273,"on_adcogs":247062.37515000033},"3PF-PFF":{"wh_shops":11004,"wh_adcogs":3574171.752580007,"on_shops":379,"on_adcogs":66606.71969000003},"Other":{"wh_shops":1536,"wh_adcogs":348269.5876899997,"on_shops":60,"on_adcogs":10736.25747}},"team":{"LT":{"wh_shops":50882,"wh_adcogs":3862570.30,"on_shops":3620,"on_adcogs":266125.68},"ST":{"wh_shops":14669,"wh_adcogs":6654784.11,"on_shops":412,"on_adcogs":137665.41},"UST":{"wh_shops":12169,"wh_adcogs":825303.71,"on_shops":98,"on_adcogs":2652.16},"Other":{"wh_shops":958,"wh_adcogs":504457.70,"on_shops":59,"on_adcogs":5075.29}},"rate":{"0-2%":{"wh_shops":893,"wh_adcogs":272332.7100800002,"on_shops":661,"on_adcogs":189384.95765},"10%+":{"wh_shops":39,"wh_adcogs":1038.4386499999998,"on_shops":36,"on_adcogs":961.1074},"2-4%":{"wh_shops":171,"wh_adcogs":12908.65513,"on_shops":137,"on_adcogs":9590.835649999999},"4-6%":{"wh_shops":59,"wh_adcogs":2647.21213,"on_shops":46,"on_adcogs":1959.0746900000001},"6-10%":{"wh_shops":36,"wh_adcogs":1921.1562700000004,"on_shops":26,"on_adcogs":1300.1131500000001}}},"opt":{"SHOP_DELETE":{"shops":104,"adcogs":2863.015189999999,"on_shops":52,"on_adcogs":378.05697},"FROZEN":{"shops":690,"adcogs":46561.55890000001,"on_shops":117,"on_adcogs":3377.1557},"BANNED":{"shops":0,"adcogs":0.0,"on_shops":0,"on_adcogs":0.0}},"total_wh":{"shops":78678,"adcogs":11847115.823289922,"on_shops":4189,"on_adcogs":411518.54143000016}}};
 const D = {
   '202601':{
     label:'2026/01',discount:'15%–20%',markets:'MY,PH,SG,VN',
@@ -362,9 +413,20 @@ const D = {
     highlights:'7月试行3套并行策略：\n① 单月折扣+前88席$30广告金——主力策略，贡献280店/$63.4k adcogs\n② 三月折扣（90天锁定）——39店/$10.1k，测试长周期留存\n③ 卖家激励大会专属权益（$60广告金×88席）——15店/$3.5k，制造稀缺感\n\nAdCogs净增长$76,929较6月+96.75%，FD+125%，RR+66%。扩受众+广告金模型验证成功。',
     tactics:'①单月折扣+前88席$30广告金——扩受众至拉新+回捞，纳入BAU月度运营\n②三月折扣——锁定90天，测试长周期留存\n③卖家激励大会专属——前88席$60广告金，制造稀缺感',
     targeting:'策略①: offboard&null, rate≤6%, adcogs≥50, 广告金$30×88席\n策略②: offboard&null, rate≤6%, adcogs≥50, 三个月锁定折扣\n策略③: 卖家激励大会定向邀请, 广告金$60×88席'
+  },
+  '202608':{
+    label:'2026/08',discount:'30%–40% + $30 广告金 / 三月折扣',markets:'MY,PH,SG,VN',
+    fd:{shops:217,adcogs:61379.75,eff:0.00663},
+    rr:{shops:202,adcogs:55355.41,eff:0.00495},
+    total:{shops:419,adcogs:116735.16},
+    fdMkt:{MY:{eff:0.00808,discount:30},PH:{eff:0.00561,discount:35},SG:{eff:0.00334,discount:30},VN:{eff:0.00899,discount:30}},
+    rrMkt:{MY:{eff:0.00593,discount:35},PH:{eff:0.00444,discount:35}},
+    highlights:'8月策略精简为2套并行（卖家激励大会策略③并入策略①）：\n① 单月折扣+前88席$30广告金（BAU）——319店/$73.5k，MOM+16%\n② 三月折扣（90天护航）放量测试——受众扩16.7倍至22,893家，100店/$43.2k（+329%），效率从1.89%稀释至0.35%\n\nAdCogs净增长$116,735较7月+51.74%。RR+78.85%反超成为增长主力（$55.4k，占比47.4%），FD+33.50%。',
+    tactics:'①单月折扣+前88席$30广告金——固化BAU，稳定贡献$73.5k\n②三月折扣——90天护航放量测试，受众扩至22,893家',
+    targeting:'策略①: offboard&null, rate≤6%, adcogs≥50, 广告金$30×88席\n策略②: offboard&null, rate≤4%, adcogs≥100, 三个月锁定折扣'
   }
 };
-const MONTHS = ['202601','202602','202603','202604','202605','202606','202607'];
+const MONTHS = ['202601','202602','202603','202604','202605','202606','202607','202608'];
 
 // ── helpers ──
 const fmtK = v => '$'+(v/1000).toFixed(1)+'k';
@@ -604,7 +666,7 @@ window.addEventListener('resize',redrawAll);
 })();
 
 // ════ 1. KPI STRIP ════
-var activeMonth = '202607';
+var activeMonth = '202608';
 
 function showMonthDetail(m){
   activeMonth = m;
@@ -637,6 +699,7 @@ function showMonthDetail(m){
     '</div>'+
     '<div class="quote"><b>'+d.label+' 小结：</b>'+
     (m==='202607' ? '7月验证了"扩受众+广告金"的规模化增长模型。三策略并行下AdCogs环比+96.8%，FD+125%。核心结论：<b>从单一折扣升级为折扣+广告金+多策略并行的组合模型，是规模化增长的正确路径。</b>下一步：固化策略①为BAU、放量测试策略②、落地转化卡点破局动作，从验证有效进入规模放量阶段。' :
+     m==='202608' ? '8月策略精简为2套并行，RR反超成为增长主力（+78.85%）。整体AdCogs净增长$116,735（MOM+51.74%）。核心结论：<b>从"验证有效"进入"规模放量"，RR场景成为新的增长引擎。</b>下一步：资源向RR倾斜、修正三月折扣的精准圈选、补齐RR在VN/SG的覆盖空白。' :
      d.highlights.split('。')[0]+'。')+
     '</div>';
   document.getElementById('monthDetailContent').innerHTML = html;
@@ -669,7 +732,8 @@ const tacticsMap = {
   '202604':{disc:'25-30%',desc:'折扣加码<br>分母大幅扩大<br>验证圈选逻辑'},
   '202605':{disc:'25-30%',desc:'MY 放宽至 ≤6%<br>转化率趋稳<br>持续 popup'},
   '202606':{disc:'25-30%+广告金',desc:'<b>双重福利首秀</b><br>前100位 $50 广告金<br>精准回捞高价值卖家'},
-  '202607':{disc:'30-40%+广告金',desc:'<b>三策略并行</b><br>扩受众+广告金模型<br>AdCogs +96.75% MOM'}
+  '202607':{disc:'30-40%+广告金',desc:'<b>三策略并行</b><br>扩受众+广告金模型<br>AdCogs +96.75% MOM'},
+  '202608':{disc:'30-40%+广告金/三月',desc:'<b>两策略并行</b><br>三月折扣放量测试<br>RR +78.85% MOM 反超主力'}
 };
 (function(){
   let h='';
@@ -927,6 +991,9 @@ renderOptimalDiscount();
 // ════ 7. WHITELIST ANALYSIS ════
 var M10 = window.__M10_DATA__ || {};
 
+// 维度 premium / claim / profit（来自 3 个 whitelist CSV：fd/rr_total_premium_after_discount_usd 与 fd/rr_total_approved_amount_usd，口径与现有 drill 各维度店铺数一致）
+window.__M10_DIM_PROFIT__ = {"ORS-FD": {"team": {"LT": {"premium": 6799239.39, "approved": 3882055.69, "profit": 2917183.7}, "ST": {"premium": 3491065.09, "approved": 2028215.52, "profit": 1462849.57}, "UST": {"premium": 351106.96, "approved": 214313.47, "profit": 136793.49}, "Other": {"premium": 115097.08, "approved": 80125.06, "profit": 34972.02}}, "market": {"MY": {"premium": 1557089.03, "approved": 1007891.21, "profit": 549197.82}, "PH": {"premium": 5393848.36, "approved": 2911158.95, "profit": 2482689.41}, "SG": {"premium": 148880.36, "approved": 77353.73, "profit": 71526.63}, "TH": {"premium": 1524563.38, "approved": 877447.93, "profit": 647115.45}, "VN": {"premium": 2132127.4, "approved": 1330857.92, "profit": 801269.47}}, "shop_type": {"pure SLS shop": {"premium": 7103393.69, "approved": 3803270.49, "profit": 3300123.2}, "3PF-PFF": {"premium": 1014466.11, "approved": 714543.71, "profit": 299922.4}, "FBS-PFF": {"premium": 2188048.41, "approved": 1363221.6, "profit": 824826.81}, "Other": {"premium": 450600.31, "approved": 323673.94, "profit": 126926.37}}}, "ORS-RR": {"team": {"LT": {"premium": 517440.46, "approved": 266599.22, "profit": 250841.24}, "ST": {"premium": 174190.18, "approved": 76934.43, "profit": 97255.75}, "UST": {"premium": 7010.54, "approved": 2526.41, "profit": 4484.13}, "Other": {"premium": 6110.53, "approved": 2863.58, "profit": 3246.95}}, "market": {"MY": {"premium": 276789.28, "approved": 127300.19, "profit": 149489.09}, "PH": {"premium": 369809.59, "approved": 187866.64, "profit": 181942.96}, "TH": {"premium": 30070.45, "approved": 15801.89, "profit": 14268.56}, "VN": {"premium": 28082.39, "approved": 17954.93, "profit": 10127.45}}, "shop_type": {"pure SLS shop": {"premium": 447447.82, "approved": 229735.63, "profit": 217712.18}, "3PF-PFF": {"premium": 57605.25, "approved": 21641.58, "profit": 35963.68}, "FBS-PFF": {"premium": 195081.88, "approved": 94700.07, "profit": 100381.81}, "Other": {"premium": 4616.76, "approved": 2846.37, "profit": 1770.39}}}};
+
 var M10_MARKETS = ['MY','PH','SG','TH','VN','TW'];
 
 // -- Part 1: market dropdown + charts --
@@ -970,23 +1037,38 @@ var M10_DIMS = [
   {key:'rate', label:'④ fd_rate / rr_rate（费率）'}
 ];
 
+var M10_TEAM_SUMMARY = {
+  'ORS-FD': 'LT 团队是保费主力（adcogs 加入率 17.0% 最高、贡献 63% total premium），但 ST 团队以 16% 的店铺握有最大 adcogs 池（$7.3M、占 53%）而加入率仅 7.4%，是提升 adoption rate 的最大增量机会。',
+  'ORS-RR': 'LT 团队是绝对主力（加入率 6.9% 最高、贡献 73% total premium），但 ST 团队 adcogs 池最大（$6.7M、占 56%）而加入率仅 2.1%，是 RR 渗透的最大增量空间。'
+};
+
+
+
 function renderM10Drill(prod){
   // Toggle buttons
   document.getElementById('btnFD').classList.toggle('active', prod==='ORS-FD');
   document.getElementById('btnRR').classList.toggle('active', prod==='ORS-RR');
 
   var drill = M10[prod]['drill'];
+  var profitByDim = (window.__M10_DIM_PROFIT__ && window.__M10_DIM_PROFIT__[prod]) || {};
   var html = '';
 
   M10_DIMS.forEach(function(dim){
     var data = drill[dim.key];
+    var dimProfit = profitByDim[dim.key] || {};
+    var hasProfit = Object.keys(dimProfit).length > 0;
     html += '<div style="margin-bottom:18px"><h4 style="margin:0 0 8px;font-size:14px">'+dim.label+'</h4>';
     html += '<div class="tbl-wrap"><table><thead><tr>'+
       '<th>维度</th><th>白名单店铺</th><th>已加入店铺</th><th>店铺加入率</th>'+
-      '<th>白名单 adcogs</th><th>已加入 adcogs</th><th>adcogs 加入率</th></tr></thead><tbody>';
+      '<th>白名单 adcogs</th><th>已加入 adcogs</th><th>adcogs 加入率</th>';
+    if(hasProfit){
+      html += '<th>total_premium</th><th>claim amount</th><th>total profit</th>';
+    }
+    html += '</tr></thead><tbody>';
 
     // Order by whitelist shops desc
     var keys = Object.keys(data).sort(function(a,b){ return data[b]['wh_shops'] - data[a]['wh_shops']; });
+    var topKey = null, topProfit = -Infinity;
     keys.forEach(function(k){
       var d = data[k];
       var shopRate = d.wh_shops>0 ? (d.on_shops/d.wh_shops*100) : 0;
@@ -998,10 +1080,29 @@ function renderM10Drill(prod){
         '<td class="num"><b>'+shopRate.toFixed(1)+'%</b></td>'+
         '<td class="num">$'+Math.round(d.wh_adcogs).toLocaleString()+'</td>'+
         '<td class="num hi">$'+Math.round(d.on_adcogs).toLocaleString()+'</td>'+
-        '<td class="num"><b>'+adcogsRate.toFixed(1)+'%</b></td>'+
-        '</tr>';
+        '<td class="num"><b>'+adcogsRate.toFixed(1)+'%</b></td>';
+      if(hasProfit){
+        var tp = dimProfit[k];
+        if(tp){
+          var profit = tp.premium - tp.approved;
+          if(profit > topProfit){ topProfit = profit; topKey = k; }
+          html += '<td class="num">$'+Math.round(tp.premium).toLocaleString()+'</td>'+
+                  '<td class="num">$'+Math.round(tp.approved).toLocaleString()+'</td>'+
+                  '<td class="num hi"><b>$'+Math.round(profit).toLocaleString()+'</b></td>';
+        } else {
+          html += '<td class="num">—</td><td class="num">—</td><td class="num">—</td>';
+        }
+      }
+      html += '</tr>';
     });
-    html += '</tbody></table></div></div>';
+    html += '</tbody></table></div>';
+    if(hasProfit && topKey){
+      html += '<div style="margin-top:6px;font-size:13px;color:var(--muted)">💡 profit 贡献最高：<b style="color:var(--orange)">'+topKey+'</b>（$'+Math.round(topProfit).toLocaleString()+'）。</div>';
+    }
+    if(dim.key === 'team' && M10_TEAM_SUMMARY[prod]){
+      html += '<div style="margin-top:6px;font-size:13px;line-height:1.7;padding:9px 12px;border-left:3px solid var(--orange);background:#fff7f2;border-radius:4px">📌 <b>团队总结：</b>'+M10_TEAM_SUMMARY[prod]+'</div>';
+    }
+    html += '</div>';
   });
 
   document.getElementById('m10DrillContent').innerHTML = html;
@@ -1094,6 +1195,289 @@ function renderM10AdoptionCalc(){
   renderM10Drill('ORS-FD');
   renderM10Whitelist();
   renderM10AdoptionCalc();
+})();
+
+
+// ════ MODULE 8 DATA (线下ST&UST卖家pitch.xlsx) ════
+// ── Module 8 GGP-level breakdown (线下ST&UST卖家pitch.xlsx) ──
+window.__M8_GGP__ = {
+  meta:{total:2691,target:2646,dual_zero:2297,rr_only:344,fd_only:5,eligible:2185},
+  totals:{g:2691,p:4293,s:132862,fw:8319243,fe:405398,fo:7913845,rw:7549551,re:10741,ro:7538810},
+  roles:[
+    {r:'ST_Electronics_Brand',ch:["alice.ni","alicia.wang01","cc.xie","norah.wu","rebecca.li","susie.song","yiwen.yuan"],g:47,p:53,s:695,fw:1459888,fe:100185,fo:1359703,rw:1349814,re:0,ro:1349814},
+    {r:'ST_Electronics_CNLS',ch:["betty.quan","chelsey.pu","doris.xie","judy.zhong"],g:9,p:15,s:430,fw:17324,fe:74,fo:17250,rw:16888,re:0,ro:16888},
+    {r:'ST_Electronics_Mass',ch:["cheney.chen","kaddy.huang","krystal.lin01","lingo.liu","ran.li01"],g:309,p:363,s:6466,fw:399381,fe:31941,fo:367441,rw:363005,re:1134,ro:361871},
+    {r:'ST_Electronics_Vertical',ch:["dione.kong02","haisley.lin","jocelyn.chen","leon.liu01","lingjia.wu","liping.lin","lixin.chen","moke.mo","molly.liang","summer.li01","xue.xia"],g:189,p:272,s:5589,fw:690944,fe:46321,fo:644623,rw:612476,re:3090,ro:609386},
+    {r:'ST_FMCG_Brand',ch:["amyy.huang","eve.li","linsay.li","renee.yu","viktor.chen","yoyo.yuan"],g:89,p:103,s:1164,fw:528829,fe:1281,fo:527548,rw:491714,re:0,ro:491714},
+    {r:'ST_FMCG_CNLS',ch:["anita.wu","ivy.zheng","peggy.wang01","phoebe.xu"],g:54,p:62,s:731,fw:288430,fe:17820,fo:270610,rw:277536,re:539,ro:276997},
+    {r:'ST_FMCG_H&B',ch:["jane.chen","maggie.mai","sally.song","shin.wei"],g:182,p:245,s:5878,fw:278014,fe:12782,fo:265233,rw:262301,re:135,ro:262166},
+    {r:'ST_FMCG_Mom&Baby_F&B',ch:["alina.ma","canna.lin","carina.zhang","pam.peng","yongqi.liang","zoey.zheng"],g:166,p:215,s:4457,fw:131816,fe:10602,fo:121214,rw:122242,re:55,ro:122187},
+    {r:'ST_Fashion_Bags_Shoes_Watches',ch:["erica.cheng","freya.fang","miki.teng","nancy.guo01"],g:10,p:13,s:253,fw:17355,fe:77,fo:17278,rw:16898,re:0,ro:16898},
+    {r:'ST_Fashion_Brand',ch:["caroline.ye","jocelyn.fu","joyce.zhou","snowie.lin"],g:67,p:75,s:2303,fw:606704,fe:11443,fo:595261,rw:540182,re:0,ro:540182},
+    {r:'ST_Fashion_CNLS',ch:["janie.jian","julia.yu","lesley.li","lexi.rao","ronan.hou"],g:121,p:148,s:3797,fw:143173,fe:15376,fo:127797,rw:127579,re:370,ro:127209},
+    {r:'ST_Fashion_FA',ch:["danny.luo","gogo.chen","liv.wang","pinot.huang","tonnie.xie"],g:211,p:286,s:6913,fw:392612,fe:10745,fo:381867,rw:363775,re:53,ro:363721},
+    {r:'ST_Fashion_MA_KidsFashion',ch:["cissy.zhang02","eileen.liu02","gia.chen02","ivy.cao","monica.fang","phoebe.zeng","sinh.nong","yilin.peng","yiyue.pang"],g:181,p:221,s:5147,fw:329574,fe:13510,fo:316064,rw:287704,re:358,ro:287346},
+    {r:'ST_Fashion_WA_Muslim',ch:["allen.zhou","chelsy.liu","fern.wu","iris.zhu01","jennie.deng","scarlett.chen01","sunny.xia01","tanya.tao"],g:188,p:221,s:5318,fw:318194,fe:12055,fo:306139,rw:250406,re:10,ro:250396},
+    {r:'ST_Lifestyle_CNLS',ch:["cecilia.hu","lily.huang02","menghan.guo","ryan.xin01","vivid.chen"],g:8,p:15,s:231,fw:12886,fe:0,fo:12886,rw:12407,re:0,ro:12407},
+    {r:'ST_Lifestyle_H&L',ch:["claire.wang","dongyu.wu","george.li","kiki.zhai","louisa.wang","nancy.guo","nuo.xu","sheryl.leng","xiaoqing.soo02","yanwen.qin","yijin.wang01"],g:162,p:248,s:4879,fw:518376,fe:39642,fo:478734,rw:469023,re:1685,ro:467338},
+    {r:'ST_Lifestyle_Mass',ch:["anna.ke","cyan.chen","huiyi.liu","mavis.ye","xiaoge.liu","yongqi.liang","yufan.zheng","zhihao.li01"],g:377,p:396,s:5299,fw:299424,fe:17510,fo:281914,rw:271818,re:65,ro:271753},
+    {r:'ST_Lifestyle_S&O_Auto&Moto',ch:["anna.yang","echo.li01","vivi.jiang02","vivian.hua","yolanda.you","yongqi.liang"],g:142,p:194,s:3965,fw:713994,fe:39118,fo:674876,rw:660396,re:605,ro:659791},
+    {r:'ST_Lifestyle_Stationery_Hobbies_Pets_Books',ch:["celia.wang","cloris.shi","jinying.wang","kelly.zhang","mengsi.chen","sarah.lu","yurui.chen"],g:148,p:171,s:3185,fw:220105,fe:10963,fo:209142,rw:203373,re:966,ro:202406},
+    {r:'UST_East_market',ch:["camille.wang","mia.rao02","sherry.kang","shirley.pei","xiao.cheng","zhongquan.xie"],g:14,p:540,s:36722,fw:589503,fe:599,fo:588904,rw:528040,re:0,ro:528040},
+    {r:'UST_South_market',ch:["alex.zeng","allie.liu","anne.he","beryl.chen","krystal.wang","meiru.lai","melissa.fan","xinrui.xu","yimin.zheng"],g:17,p:437,s:29440,fw:362716,fe:13356,fo:349360,rw:321975,re:1675,ro:320300}
+  ]
+};
+
+window.__M8_DATA__ = {
+  meta: {
+    total_stust: 4293,
+    target: 4246,
+    dual_zero: 3756,
+    rr_only_zero: 482,
+    fd_only_zero: 8,
+    eligible: 3283,
+    addr_gmv: 295938548,
+    addr_fee_fd: 5326894,
+    addr_fee_rr: 7250494,
+    fd_rate: 0.018,
+    rr_rate: 0.0245
+  },
+  below: { count: 963 },
+  tiers: [
+    { name:'入门级', gmv:'$1万 – 5万', count:2079, pct:63.3, fee:'$180 – 900', fee_rr:'$245 – 1,225', reward:80, avg_ladder:137 },
+    { name:'成长级', gmv:'$5万 – 15万', count:860, pct:26.2, fee:'$900 – 2,700', fee_rr:'$1,225 – 3,675', reward:120, avg_ladder:483 },
+    { name:'旗舰级', gmv:'$15万以上', count:344, pct:10.5, fee:'$2,700+', fee_rr:'$3,675+', reward:180, avg_ladder:1301 }
+  ],
+  ladder: [
+    { fee:200, reward:80, cum:80, cov:'~97%' },
+    { fee:500, reward:150, cum:230, cov:'~62%' },
+    { fee:1000, reward:300, cum:530, cov:'~33%' },
+    { fee:2700, reward:400, cum:930, cov:'~10%' },
+    { fee:5000, reward:500, cum:1430, cov:'~5%' },
+    { fee:10000, reward:600, cum:2030, cov:'~2%' }
+  ]
+};
+
+// ════ MODULE 8 HELPERS ════
+function getM8Conv(){
+  var el = document.getElementById('m8Conv');
+  var v = el ? parseInt(el.value, 10) : 20;
+  if(!isFinite(v) || v < 0) v = 0;
+  return v;
+}
+// 按达标卖家结构，把 N 家分配到三档（最大余数法，保证加总精确等于 N）
+function distributeConv(N){
+  var counts = window.__M8_DATA__.tiers.map(function(t){ return t.count; });
+  var total = counts.reduce(function(a,b){ return a+b; }, 0);
+  var raw = counts.map(function(c){ return N * c / total; });
+  var floors = raw.map(Math.floor);
+  var rem = N - floors.reduce(function(a,b){ return a+b; }, 0);
+  var frac = raw.map(function(r,i){ return { i:i, f:r-floors[i] }; });
+  frac.sort(function(a,b){ return b.f - a.f; });
+  for(var k=0; k<rem; k++){ floors[frac[k].i]++; }
+  return floors;
+}
+
+// ════ MODULE 8 RENDER ════
+function renderM8Overview(){
+  var m = window.__M8_GGP__.meta;
+  var pct = m.target > 0 ? (m.dual_zero/m.target*100).toFixed(1) : '0.0';
+  var cards = [
+    { k:'ST/UST 集团（GGP）总数', v:m.total.toLocaleString(), s:'GGP Account Name 去重' },
+    { k:'目标集团（未加入）', v:m.target.toLocaleString(), s:'GGP 级 FD=0 或 RR=0' },
+    { k:'双未加入（首次）', v:m.dual_zero.toLocaleString(), s:'开户礼核心对象' },
+    { k:'达标集团（GMV≥1万）', v:m.eligible.toLocaleString(), s:'可激励基数' }
+  ];
+  var html = '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center">';
+  cards.forEach(function(c){
+    html += '<div style="padding:14px 8px;border:1px solid var(--border);border-radius:10px;background:#fafbfc">'
+      + '<div style="font-size:13px;color:var(--muted)">'+c.k+'</div>'
+      + '<div style="font-size:26px;font-weight:700;color:var(--orange);line-height:1.3">'+c.v+'</div>'
+      + '<div style="font-size:12px;color:var(--muted)">'+c.s+'</div></div>';
+  });
+  html += '</div>';
+  html += '<div style="margin-top:14px;font-size:14px;line-height:1.8">入会状态拆解（GGP 集团维度）：<b>双未加入 '+m.dual_zero.toLocaleString()+'</b>（占目标 <b>'+pct+'%</b>，从未使用过任何 ORS 产品，是「首次加入」奖励的核心对象）· <b>仅未加入 RR '+m.rr_only.toLocaleString()+'</b>（已用 FD，可 pitch RR）· <b>仅未加入 FD '+m.fd_only.toLocaleString()+'</b>（已用 RR，可 pitch FD）。</div>';
+  document.getElementById('m8Overview').innerHTML = html;
+}
+
+function m8Money(v){
+  if(v >= 1e6) return '$'+(v/1e6).toFixed(2)+'M';
+  if(v >= 1e3) return '$'+Math.round(v/1e3)+'k';
+  return '$'+Math.round(v);
+}
+
+function renderM8Breakdown(){
+  var t = window.__M8_GGP__.totals, roles = window.__M8_GGP__.roles;
+  var html = '<table><thead><tr>'
+    + '<th>团队（GP Account Owner Userrole Name）</th>'
+    + '<th>卖家经理<br><span style="font-weight:400;font-size:11px">Child Account Names（@shopee.com）</span></th>'
+    + '<th>GGP</th><th>GP</th><th>店铺</th>'
+    + '<th>FD 当前转化<br><span style="font-weight:400;font-size:11px">enrolled / whitelist</span></th>'
+    + '<th>FD 潜力<br><span style="font-weight:400;font-size:11px">potential adcogs</span></th>'
+    + '<th>RR 当前转化<br><span style="font-weight:400;font-size:11px">enrolled / whitelist</span></th>'
+    + '<th>RR 潜力<br><span style="font-weight:400;font-size:11px">potential adcogs</span></th>'
+    + '</tr></thead><tbody>';
+  roles.forEach(function(o){
+    var fd = o.fw>0 ? (o.fe/o.fw*100) : 0;
+    var rr = o.rw>0 ? (o.re/o.rw*100) : 0;
+    var ch = o.ch.length ? o.ch.map(function(c){
+      return '<span style="display:inline-block;background:#f1f3f5;border:1px solid #e6e8eb;border-radius:4px;padding:0 5px;margin:1px 2px 1px 0;font-size:10px;color:#444">'+c+'</span>';
+    }).join('') : '<span style="color:var(--muted)">—</span>';
+    html += '<tr>'
+      + '<td><b>'+o.r+'</b></td>'
+      + '<td style="font-size:11px;color:var(--muted);line-height:1.6;min-width:180px">'+ch+'</td>'
+      + '<td class="num">'+o.g.toLocaleString()+'</td>'
+      + '<td class="num">'+o.p.toLocaleString()+'</td>'
+      + '<td class="num">'+o.s.toLocaleString()+'</td>'
+      + '<td class="num"><b>'+fd.toFixed(1)+'%</b><div style="font-size:10px;color:var(--muted)">'+m8Money(o.fe)+' / '+m8Money(o.fw)+'</div></td>'
+      + '<td class="num hi">'+m8Money(o.fo)+'</td>'
+      + '<td class="num"><b>'+rr.toFixed(1)+'%</b><div style="font-size:10px;color:var(--muted)">'+m8Money(o.re)+' / '+m8Money(o.rw)+'</div></td>'
+      + '<td class="num hi">'+m8Money(o.ro)+'</td>'
+      + '</tr>';
+  });
+  var tfd = t.fw>0 ? (t.fe/t.fw*100) : 0;
+  var trr = t.rw>0 ? (t.re/t.rw*100) : 0;
+  html += '<tr style="background:#fff7f2;font-weight:700">'
+    + '<td>合计（ST/UST）</td><td style="font-size:11px;color:var(--muted)">—</td>'
+    + '<td class="num">'+t.g.toLocaleString()+'</td>'
+    + '<td class="num">'+t.p.toLocaleString()+'</td>'
+    + '<td class="num">'+t.s.toLocaleString()+'</td>'
+    + '<td class="num">'+tfd.toFixed(1)+'%</td>'
+    + '<td class="num hi">'+m8Money(t.fo)+'</td>'
+    + '<td class="num">'+trr.toFixed(1)+'%</td>'
+    + '<td class="num hi">'+m8Money(t.ro)+'</td>'
+    + '</tr>';
+  html += '</tbody></table>';
+  html += '<div style="margin-top:10px;font-size:12px;color:var(--muted)">注：「FD/RR 当前转化」= enrolled adcogs ÷ whitelist adcogs（货值维度的 adoption）；「潜力」= potential enroll adcogs = whitelist − enrolled（尚未转化、可争取的货值空间）。卖家经理仅列内部 @shopee.com 账号，外部协作账号（@shopeemobile-external.com，共 9 个）已剔除。</div>';
+  document.getElementById('tblM8Breakdown').innerHTML = html;
+}
+
+function renderM8Tier(){
+  var D8 = window.__M8_DATA__, tiers = D8.tiers;
+  var N = getM8Conv(), conv = distributeConv(N);
+  var html = '<thead><tr><th>卖家等级</th><th>月均GMV（USD）</th><th>卖家数</th><th>占达标比</th><th>首月服务费（FD 1.8%）</th><th>首月服务费（RR 2.45%）</th><th>首次加入奖励</th><th>预算使用（月）</th></tr></thead><tbody>';
+  var totalBudget = 0, totalCount = 0;
+  tiers.forEach(function(t, i){
+    var c = conv[i], b = c * t.reward;
+    totalBudget += b; totalCount += t.count;
+    html += '<tr><td><b>'+t.name+'</b></td><td class="num">'+t.gmv+'</td><td class="num hi">'+t.count.toLocaleString()+'</td>'
+      + '<td class="num">'+t.pct+'%</td><td class="num">'+t.fee+'</td><td class="num">'+t.fee_rr+'</td>'
+      + '<td class="num"><b style="color:var(--orange)">$'+t.reward+'</b></td>'
+      + '<td class="num">'+c+' 家 × $'+t.reward+' = <b>$'+b.toLocaleString()+'</b></td></tr>';
+  });
+  html += '<tr><td style="color:var(--muted)">未达标</td><td class="num" style="color:var(--muted)">&lt; $1万</td>'
+    + '<td class="num">'+D8.below.count.toLocaleString()+'</td><td class="num" style="color:var(--muted)">—</td>'
+    + '<td class="num" style="color:var(--muted)">—</td><td class="num" style="color:var(--muted)">—</td>'
+    + '<td class="num" style="color:var(--muted)">不纳入</td>'
+    + '<td class="num" style="color:var(--muted)">—</td></tr>';
+  html += '<tr style="background:#fff7f2;font-weight:700"><td>合计（达标）</td><td class="num">—</td>'
+    + '<td class="num">'+totalCount.toLocaleString()+'</td><td class="num">100%</td>'
+    + '<td class="num">—</td><td class="num">—</td><td class="num">—</td>'
+    + '<td class="num hi">'+N+' 家 → <b>$'+totalBudget.toLocaleString()+'</b>/月</td></tr>';
+  html += '</tbody>';
+  document.getElementById('tblM8Tier').innerHTML = html;
+  drawM8TierChart();
+}
+
+function drawM8TierChart(){
+  var ch = initCanvas('chartM8Tier'), ctx = ch.ctx, w = ch.w, h = ch.h;
+  var tiers = window.__M8_DATA__.tiers;
+  var max = 0;
+  tiers.forEach(function(t){ if(t.count > max) max = t.count; });
+  ctx.fillStyle = COLORS.white; ctx.fillRect(0,0,w,h);
+  var padLeft = 80, padRight = 90, top = 18, barH = 28, gap = 24;
+  tiers.forEach(function(t, i){
+    var y = top + i*(barH+gap);
+    ctx.fillStyle = COLORS.muted; ctx.font = '12px "Microsoft YaHei",sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(t.name, padLeft-12, y+barH/2+4);
+    var bw = (t.count/max)*(w-padLeft-padRight);
+    roundRect(ctx, padLeft, y, bw, barH, 6);
+    ctx.fillStyle = COLORS.orange; ctx.fill();
+    ctx.fillStyle = '#1a1f36'; ctx.textAlign = 'left'; ctx.font = '12px "Microsoft YaHei",sans-serif';
+    ctx.fillText(t.count.toLocaleString()+' 家', padLeft+bw+8, y+barH/2+4);
+  });
+}
+
+function renderM8Fee(){
+  var m = window.__M8_DATA__.meta;
+  document.getElementById('m8FeeInsight').innerHTML =
+    '<b>保费率口径：</b>FD 中位 <b>1.80%</b>、RR 中位 <b>2.45%</b>（取自白名单实际保费率分布）。<br>'
+    + '<b>首月服务费 = 月均GMV × 保费率</b>，三档对应服务费区间自然衔接：入门 $180–900 / 成长 $900–2,700 / 旗舰 $2,700+。'
+    + '<br>可触达空间：达标 3,283 家，合计月均 GMV <b>$2.96 亿</b>；若全部加入，首月服务费潜力 <b>FD $5.3M / RR $7.3M</b>。';
+}
+
+function renderM8Ladder(){
+  var html = '<table><thead><tr><th>首月累计服务费（USD）</th><th>本档额外广告金</th><th>累计广告金</th><th>达标卖家覆盖率（估）</th></tr></thead><tbody>';
+  window.__M8_DATA__.ladder.forEach(function(l){
+    html += '<tr><td class="num"><b>≥ $'+l.fee+'</b></td><td class="num hi">+$'+l.reward+'</td>'
+      + '<td class="num"><b>$'+l.cum+'</b></td><td class="num">'+l.cov+'</td></tr>';
+  });
+  html += '</tbody></table>';
+  html += '<div style="margin-top:12px;font-size:13px;color:var(--muted)">说明：阶梯奖励可叠加（如首月服务费 $1,000 → $80+$150+$300 = <b>$530</b>）。<b>$200/$500</b> 档覆盖 ~97%/~62%，是占达标 89.5% 的入门/成长级卖家的「普惠档」；<b>$1,000</b> 档为成长级冲刺档；<b>$2,700</b> 档为旗舰级门槛；<b>$5,000/$10,000</b> 档额度收敛为 +$500/+$600，最高累计 <b>$2,030</b>，不再重仓旗舰。服务费仅统计加入后新产生且已完成清关的订单，次月 15 日前充值。</div>';
+  document.getElementById('tblM8Ladder').innerHTML = html;
+}
+
+function renderM8Budget(){
+  var tiers = window.__M8_DATA__.tiers;
+  var N = getM8Conv(), conv = distributeConv(N);
+  var firstReward = 0, parts = [];
+  tiers.forEach(function(t, i){
+    var b = conv[i] * t.reward;
+    firstReward += b;
+    parts.push(conv[i]+'×$'+t.reward);
+  });
+  var ladder = 0, ladderParts = [];
+  tiers.forEach(function(t, i){
+    var b = conv[i] * t.avg_ladder;
+    ladder += b;
+    ladderParts.push(conv[i]+'×$'+t.avg_ladder);
+  });
+  ladder = Math.round(ladder);
+  var reserve = Math.round((firstReward + ladder) * 0.2);  // 预留 ≈ 前两项 20%
+  var total = firstReward + ladder + reserve;
+  var avg = N > 0 ? Math.round(firstReward / N) : 0;
+  var rows = [
+    { item:'首次加入奖励（开户礼）', amount:firstReward, note:N+' 家 × 平均 $'+avg+'（'+parts.join(' + ')+'）' },
+    { item:'首月服务费阶梯激励（使用礼）', amount:ladder, note:N+' 家按结构 × 各档平均阶梯奖励（'+ladderParts.join(' + ')+'）' },
+    { item:'预留灵活调配资金', amount:reserve, note:'高潜力卖家限时翻倍礼 / 客诉补偿（约前两项 20%）' },
+    { item:'合计', amount:total, note:'月度预算上限' }
+  ];
+  var html = '<table><thead><tr><th>项目</th><th>预估支出（USD）</th><th>占预算比例</th><th>测算依据</th></tr></thead><tbody>';
+  rows.forEach(function(b){
+    var isTotal = b.item === '合计';
+    var pct = total > 0 ? Math.round(b.amount / total * 100) : 0;
+    html += '<tr'+(isTotal?' style="background:#fff7f2;font-weight:700"':'')+'><td><b>'+b.item+'</b></td>'
+      + '<td class="num '+(isTotal?'hi':'')+'">$'+b.amount.toLocaleString()+'</td>'
+      + '<td class="num">'+pct+'%</td><td class="num" style="color:var(--muted)">'+b.note+'</td></tr>';
+  });
+  html += '</tbody></table>';
+  document.getElementById('tblM8Budget').innerHTML = html;
+}
+
+function renderM8Conclusion(){
+  var N = getM8Conv();
+  var runway = N > 0 ? Math.round(3283 / N) : '—';
+  var html = [
+    '<div class="insight"><span class="tag tag-fd">分层</span><b>三档阈值与服务费自然衔接：</b>1万/5万/15万 的 GMV 分档，对应首月服务费 $180 / $900 / $2,700 三档台阶，奖励从 $80→$120→$180 递增，激励力度与卖家价值正相关，分层逻辑成立。</div>',
+    '<div class="insight"><span class="tag tag-rr">阶梯</span><b>预算重心转向「数量多」的入门/成长级：</b>新阶梯 $200/$500/$1,000 档加码为 +$80/+$150/+$300（原 $50/$100/$250），惠及占达标 89.5% 的入门/成长卖家；$2,700 档为旗舰门槛，$5,000/$10,000 档收敛为 +$500/+$600（原 +$1,000/+$2,000），最高累计 $2,030，旗舰级阶梯激励近乎减半，把预算释放给数量更多的入门/成长级。</div>',
+    '<div class="insight"><span class="tag tag-bonus">ROI</span><b>一次性奖励 vs 首月服务费：</b>入门级 $80 即可撬动 $180–900 首月服务费（且服务费为持续月度收入），单次 ROI 极高；阶梯侧入门/成长级平均阶梯奖励已从 $88/$360 提升至 $137/$483，而旗舰级从 $1,819 收敛至 $1,301，激励力度与「数量 × 留存」而非单一「头部价值」对齐。</div>',
+    '<div class="insight"><span class="tag tag-fd">空间</span><b>可触达空间充足：</b>达标卖家 3,283 家，以每月 '+N+' 家转化计，可支撑约 '+runway+' 个月运营纵深；若首月服务费达标，将稳定贡献月度保费收入。</div>'
+  ].join('');
+  document.getElementById('m8Conclusion').innerHTML = html;
+}
+
+function renderM8All(){
+  renderM8Tier();
+  renderM8Budget();
+  renderM8Conclusion();
+}
+
+(function(){
+  renderM8Overview();
+  renderM8Breakdown();
+  renderM8All();
+  renderM8Fee();
+  renderM8Ladder();
 })();
 
 // ════ INIT ════
